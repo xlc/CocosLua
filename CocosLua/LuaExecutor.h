@@ -18,5 +18,6 @@
 
 - (NSError *)executeFile:(NSString *)file;
 - (NSError *)executeString:(NSString *)string;
+- (NSError *)checkString:(NSString *)string completed:(BOOL *)completed;
 
 @end

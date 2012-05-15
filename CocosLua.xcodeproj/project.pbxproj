@@ -59,6 +59,7 @@
 		06834C6E1560FBE1001A1F44 /* wax_server.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C051560FBE1001A1F44 /* wax_server.m */; };
 		06834C701560FBE1001A1F44 /* wax_struct.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834C071560FBE1001A1F44 /* wax_struct.h */; };
 		06834C711560FBE1001A1F44 /* wax_struct.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C081560FBE1001A1F44 /* wax_struct.m */; };
+		06834DD015623369001A1F44 /* LuaConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834DCF15623369001A1F44 /* LuaConsole.m */; };
 		069D8344155F606B0074CEF2 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 069D8307155F606B0074CEF2 /* lapi.c */; };
 		069D8345155F606B0074CEF2 /* lapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 069D8308155F606B0074CEF2 /* lapi.h */; };
 		069D8346155F606B0074CEF2 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 069D8309155F606B0074CEF2 /* lauxlib.c */; };
@@ -633,6 +634,8 @@
 		06834C051560FBE1001A1F44 /* wax_server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_server.m; sourceTree = "<group>"; };
 		06834C071560FBE1001A1F44 /* wax_struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_struct.h; sourceTree = "<group>"; };
 		06834C081560FBE1001A1F44 /* wax_struct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_struct.m; sourceTree = "<group>"; };
+		06834DCE15623369001A1F44 /* LuaConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaConsole.h; sourceTree = "<group>"; };
+		06834DCF15623369001A1F44 /* LuaConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaConsole.m; sourceTree = "<group>"; };
 		069D8271155F5CA80074CEF2 /* libLua.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLua.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		069D82FB155F606B0074CEF2 /* contents.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = contents.html; sourceTree = "<group>"; };
 		069D82FC155F606B0074CEF2 /* logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo.gif; sourceTree = "<group>"; };
@@ -929,6 +932,15 @@
 			path = xml;
 			sourceTree = "<group>";
 		};
+		06834DCD15623332001A1F44 /* LuaConsole */ = {
+			isa = PBXGroup;
+			children = (
+				06834DCE15623369001A1F44 /* LuaConsole.h */,
+				06834DCF15623369001A1F44 /* LuaConsole.m */,
+			);
+			name = LuaConsole;
+			sourceTree = "<group>";
+		};
 		069D826B155F5C550074CEF2 /* libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,6 +1132,7 @@
 		069D85AB155F89EE0074CEF2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				06834DCD15623332001A1F44 /* LuaConsole */,
 				069D8621155F8CF00074CEF2 /* LuaExecutor */,
 				06834AE8155FB340001A1F44 /* Other */,
 			);
@@ -1855,6 +1868,7 @@
 				06CD5B7C155E85FF005206AA /* AppDelegate.m in Sources */,
 				069D8624155F8D0E0074CEF2 /* LuaExecutor.m in Sources */,
 				06834AE7155FB30B001A1F44 /* MLogger.c in Sources */,
+				06834DD015623369001A1F44 /* LuaConsole.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

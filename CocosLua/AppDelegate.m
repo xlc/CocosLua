@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 
 #import "LuaExecutor.h"
+#import "LuaConsole.h"
 
 @implementation AppDelegate
 
@@ -88,7 +89,8 @@
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 //    [director_ pushScene:[NSClassFromString(@"LuaScene") node]];
     [[LuaExecutor sharedExecutor] executeFile:@"main"];
-//    UITextField *view = [[[UITextView alloc] initWithFrame:
+    [[LuaConsole sharedConsole] setVisible:YES];
+    
 	return YES;
 }
 
