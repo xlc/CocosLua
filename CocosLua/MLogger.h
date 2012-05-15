@@ -87,8 +87,8 @@ MFAIL(@"kernal function: '%s' returned with error: %s", #e, mach_error_string(__
 } \
 } while (0)
 
-#define MASSERT_ERROR(e) do { \
-NSError *__error = (e); \
+#define MASSERT_NOERR(e) do { \
+id __error = (e); \
 if (__error != nil) { \
 MFAIL(@"'%s' returned with error: %@", #e, __error); \
 } \

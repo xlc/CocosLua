@@ -27,7 +27,6 @@ int luaopen_wax_instance(lua_State *L);
 wax_instance_userdata *wax_instance_create(lua_State *L, id instance, BOOL isClass);
 wax_instance_userdata *wax_instance_createSuper(lua_State *L, wax_instance_userdata *instanceUserdata);
 void wax_instance_pushUserdataTable(lua_State *L);
-void wax_instance_pushStrongUserdataTable(lua_State *L);
 
 BOOL wax_instance_pushFunction(lua_State *L, id self, SEL selector);
 void wax_instance_pushUserdata(lua_State *L, id object);

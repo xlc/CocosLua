@@ -51,15 +51,12 @@
 		06834C641560FBE1001A1F44 /* wax.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834BFB1560FBE1001A1F44 /* wax.m */; };
 		06834C651560FBE1001A1F44 /* wax_class.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834BFC1560FBE1001A1F44 /* wax_class.h */; };
 		06834C661560FBE1001A1F44 /* wax_class.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834BFD1560FBE1001A1F44 /* wax_class.m */; };
-		06834C671560FBE1001A1F44 /* wax_gc.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834BFE1560FBE1001A1F44 /* wax_gc.h */; };
-		06834C681560FBE1001A1F44 /* wax_gc.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834BFF1560FBE1001A1F44 /* wax_gc.m */; };
 		06834C691560FBE1001A1F44 /* wax_helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834C001560FBE1001A1F44 /* wax_helpers.h */; };
 		06834C6A1560FBE1001A1F44 /* wax_helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C011560FBE1001A1F44 /* wax_helpers.m */; };
 		06834C6B1560FBE1001A1F44 /* wax_instance.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834C021560FBE1001A1F44 /* wax_instance.h */; };
 		06834C6C1560FBE1001A1F44 /* wax_instance.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C031560FBE1001A1F44 /* wax_instance.m */; };
 		06834C6D1560FBE1001A1F44 /* wax_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834C041560FBE1001A1F44 /* wax_server.h */; };
 		06834C6E1560FBE1001A1F44 /* wax_server.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C051560FBE1001A1F44 /* wax_server.m */; };
-		06834C6F1560FBE1001A1F44 /* wax_stdlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834C061560FBE1001A1F44 /* wax_stdlib.h */; };
 		06834C701560FBE1001A1F44 /* wax_struct.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834C071560FBE1001A1F44 /* wax_struct.h */; };
 		06834C711560FBE1001A1F44 /* wax_struct.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C081560FBE1001A1F44 /* wax_struct.m */; };
 		069D8344155F606B0074CEF2 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 069D8307155F606B0074CEF2 /* lapi.c */; };
@@ -135,14 +132,8 @@
 		069D859A155F80FF0074CEF2 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 069D858F155F80FF0074CEF2 /* Icon.png */; };
 		069D859B155F80FF0074CEF2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 069D8590155F80FF0074CEF2 /* Icon@2x.png */; };
 		069D859C155F80FF0074CEF2 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 069D8591155F80FF0074CEF2 /* iTunesArtwork */; };
-		069D859D155F895A0074CEF2 /* libLua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D8271155F5CA80074CEF2 /* libLua.a */; };
 		069D859E155F895D0074CEF2 /* libwax.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D849B155F616A0074CEF2 /* libwax.a */; };
 		069D859F155F89690074CEF2 /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D8414155F60FB0074CEF2 /* libcocos2d.a */; };
-		069D85A0155F897C0074CEF2 /* libbox2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D8410155F60FB0074CEF2 /* libbox2d.a */; };
-		069D85A1155F897C0074CEF2 /* libChipmunk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D8412155F60FB0074CEF2 /* libChipmunk.a */; };
-		069D85A2155F897C0074CEF2 /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D8418155F60FB0074CEF2 /* libCocosDenshion.a */; };
-		069D85A3155F897C0074CEF2 /* libkazmath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D857F155F7EF20074CEF2 /* libkazmath.a */; };
-		069D85A4155F897C0074CEF2 /* liblibpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D841E155F60FB0074CEF2 /* liblibpng.a */; };
 		069D85A6155F89910074CEF2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D85A5155F89900074CEF2 /* OpenGLES.framework */; };
 		069D85A8155F899E0074CEF2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D85A7155F899D0074CEF2 /* QuartzCore.framework */; };
 		069D85AA155F89C40074CEF2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D85A9155F89C40074CEF2 /* libz.dylib */; };
@@ -154,6 +145,7 @@
 		06CD5B76155E85FF005206AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 06CD5B74155E85FF005206AA /* InfoPlist.strings */; };
 		06CD5B78155E85FF005206AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CD5B77155E85FF005206AA /* main.m */; };
 		06CD5B7C155E85FF005206AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CD5B7B155E85FF005206AA /* AppDelegate.m */; };
+		0BE574F61561B50300B858BE /* wax in Resources */ = {isa = PBXBuildFile; fileRef = 0BE574F51561B50300B858BE /* wax */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -586,18 +578,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		069D853D155F69400074CEF2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		06834A6D155FAD36001A1F44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		06834AE5155FB30B001A1F44 /* MLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLogger.h; sourceTree = "<group>"; };
@@ -645,18 +625,14 @@
 		06834BFB1560FBE1001A1F44 /* wax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax.m; sourceTree = "<group>"; };
 		06834BFC1560FBE1001A1F44 /* wax_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_class.h; sourceTree = "<group>"; };
 		06834BFD1560FBE1001A1F44 /* wax_class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_class.m; sourceTree = "<group>"; };
-		06834BFE1560FBE1001A1F44 /* wax_gc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_gc.h; sourceTree = "<group>"; };
-		06834BFF1560FBE1001A1F44 /* wax_gc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_gc.m; sourceTree = "<group>"; };
 		06834C001560FBE1001A1F44 /* wax_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_helpers.h; sourceTree = "<group>"; };
 		06834C011560FBE1001A1F44 /* wax_helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_helpers.m; sourceTree = "<group>"; };
 		06834C021560FBE1001A1F44 /* wax_instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_instance.h; sourceTree = "<group>"; };
 		06834C031560FBE1001A1F44 /* wax_instance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_instance.m; sourceTree = "<group>"; };
 		06834C041560FBE1001A1F44 /* wax_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_server.h; sourceTree = "<group>"; };
 		06834C051560FBE1001A1F44 /* wax_server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_server.m; sourceTree = "<group>"; };
-		06834C061560FBE1001A1F44 /* wax_stdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_stdlib.h; sourceTree = "<group>"; };
 		06834C071560FBE1001A1F44 /* wax_struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_struct.h; sourceTree = "<group>"; };
 		06834C081560FBE1001A1F44 /* wax_struct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_struct.m; sourceTree = "<group>"; };
-		06834C721560FBF5001A1F44 /* wax */ = {isa = PBXFileReference; lastKnownFileType = folder; path = wax; sourceTree = "<group>"; };
 		069D8271155F5CA80074CEF2 /* libLua.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLua.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		069D82FB155F606B0074CEF2 /* contents.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = contents.html; sourceTree = "<group>"; };
 		069D82FC155F606B0074CEF2 /* logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = logo.gif; sourceTree = "<group>"; };
@@ -759,6 +735,7 @@
 		06CD5B79155E85FF005206AA /* CocosLua-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocosLua-Prefix.pch"; sourceTree = "<group>"; };
 		06CD5B7A155E85FF005206AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		06CD5B7B155E85FF005206AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0BE574F51561B50300B858BE /* wax */ = {isa = PBXFileReference; lastKnownFileType = folder; path = wax; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -790,14 +767,8 @@
 				069D85AA155F89C40074CEF2 /* libz.dylib in Frameworks */,
 				069D85A8155F899E0074CEF2 /* QuartzCore.framework in Frameworks */,
 				069D85A6155F89910074CEF2 /* OpenGLES.framework in Frameworks */,
-				069D85A0155F897C0074CEF2 /* libbox2d.a in Frameworks */,
-				069D85A1155F897C0074CEF2 /* libChipmunk.a in Frameworks */,
-				069D85A2155F897C0074CEF2 /* libCocosDenshion.a in Frameworks */,
-				069D85A3155F897C0074CEF2 /* libkazmath.a in Frameworks */,
-				069D85A4155F897C0074CEF2 /* liblibpng.a in Frameworks */,
 				069D859F155F89690074CEF2 /* libcocos2d.a in Frameworks */,
 				069D859E155F895D0074CEF2 /* libwax.a in Frameworks */,
-				069D859D155F895A0074CEF2 /* libLua.a in Frameworks */,
 				06CD5B6C155E85FF005206AA /* UIKit.framework in Frameworks */,
 				06CD5B6E155E85FF005206AA /* Foundation.framework in Frameworks */,
 				06CD5B70155E85FF005206AA /* CoreGraphics.framework in Frameworks */,
@@ -821,21 +792,18 @@
 		06834B731560FBE1001A1F44 /* wax */ = {
 			isa = PBXGroup;
 			children = (
-				06834C721560FBF5001A1F44 /* wax */,
+				0BE574F51561B50300B858BE /* wax */,
 				06834B781560FBE1001A1F44 /* extensions */,
 				06834BFA1560FBE1001A1F44 /* wax.h */,
 				06834BFB1560FBE1001A1F44 /* wax.m */,
 				06834BFC1560FBE1001A1F44 /* wax_class.h */,
 				06834BFD1560FBE1001A1F44 /* wax_class.m */,
-				06834BFE1560FBE1001A1F44 /* wax_gc.h */,
-				06834BFF1560FBE1001A1F44 /* wax_gc.m */,
 				06834C001560FBE1001A1F44 /* wax_helpers.h */,
 				06834C011560FBE1001A1F44 /* wax_helpers.m */,
 				06834C021560FBE1001A1F44 /* wax_instance.h */,
 				06834C031560FBE1001A1F44 /* wax_instance.m */,
 				06834C041560FBE1001A1F44 /* wax_server.h */,
 				06834C051560FBE1001A1F44 /* wax_server.m */,
-				06834C061560FBE1001A1F44 /* wax_stdlib.h */,
 				06834C071560FBE1001A1F44 /* wax_struct.h */,
 				06834C081560FBE1001A1F44 /* wax_struct.m */,
 			);
@@ -1286,11 +1254,9 @@
 				06834C2C1560FBE1001A1F44 /* wax_xml.h in Headers */,
 				06834C631560FBE1001A1F44 /* wax.h in Headers */,
 				06834C651560FBE1001A1F44 /* wax_class.h in Headers */,
-				06834C671560FBE1001A1F44 /* wax_gc.h in Headers */,
 				06834C691560FBE1001A1F44 /* wax_helpers.h in Headers */,
 				06834C6B1560FBE1001A1F44 /* wax_instance.h in Headers */,
 				06834C6D1560FBE1001A1F44 /* wax_server.h in Headers */,
-				06834C6F1560FBE1001A1F44 /* wax_stdlib.h in Headers */,
 				06834C701560FBE1001A1F44 /* wax_struct.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1322,7 +1288,6 @@
 				069D8497155F616A0074CEF2 /* Sources */,
 				069D8498155F616A0074CEF2 /* Frameworks */,
 				069D8499155F616A0074CEF2 /* Headers */,
-				069D853D155F69400074CEF2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1794,6 +1759,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BE574F61561B50300B858BE /* wax in Resources */,
 				06CD5B76155E85FF005206AA /* InfoPlist.strings in Resources */,
 				069D8592155F80FF0074CEF2 /* Default.png in Resources */,
 				069D8593155F80FF0074CEF2 /* fps_images-hd.png in Resources */,
@@ -1874,7 +1840,6 @@
 				06834C2D1560FBE1001A1F44 /* wax_xml.m in Sources */,
 				06834C641560FBE1001A1F44 /* wax.m in Sources */,
 				06834C661560FBE1001A1F44 /* wax_class.m in Sources */,
-				06834C681560FBE1001A1F44 /* wax_gc.m in Sources */,
 				06834C6A1560FBE1001A1F44 /* wax_helpers.m in Sources */,
 				06834C6C1560FBE1001A1F44 /* wax_instance.m in Sources */,
 				06834C6E1560FBE1001A1F44 /* wax_server.m in Sources */,
@@ -1936,6 +1901,7 @@
 				DSTROOT = /tmp/Lua.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1948,6 +1914,7 @@
 				DSTROOT = /tmp/Lua.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1964,6 +1931,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					libs/lua/src,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1980,6 +1948,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					libs/lua/src,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2037,6 +2006,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CocosLua/CocosLua-Prefix.pch";
 				INFOPLIST_FILE = "CocosLua/CocosLua-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DDEBUG";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "libs/cocos2d/cocos2d libs/wax/lib libs/lua/src libs/cocos2d/external/kazmath/include";
 				WRAPPER_EXTENSION = app;
@@ -2049,6 +2024,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CocosLua/CocosLua-Prefix.pch";
 				INFOPLIST_FILE = "CocosLua/CocosLua-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "libs/cocos2d/cocos2d libs/wax/lib libs/lua/src libs/cocos2d/external/kazmath/include";
 				WRAPPER_EXTENSION = app;

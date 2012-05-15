@@ -31,13 +31,14 @@ function wax.alert(title, message, ...)
   return alert
 end
 
--- Forces print to use NSLog
+--[[ Forces print to use NSLog
 if not UIDevice:currentDevice():model():match("iPhone Simulator") then
   function print(obj)
     -- if there is an error, ignore it
     pcall(function() wax.print(tostring(obj)) end)
   end
 end
+]]--
 
 function wax.tostring(obj, ...)
   if type(obj) == "table" then

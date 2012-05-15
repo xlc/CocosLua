@@ -43,7 +43,7 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
     if (_ipv4socket == NULL) {
         error = [[NSError alloc] initWithDomain:@"Wax Error" code:kTCPServerNoSocketsAvailable userInfo:nil];
         _ipv4socket = NULL;
-        return NO;
+        return [error autorelease];
     }	
 	
     int yes = 1;
@@ -63,7 +63,7 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
         error = [[NSError alloc] initWithDomain:@"Wax Error" code:kTCPServerCouldNotBindToIPv4Address userInfo:nil];
         if (_ipv4socket) CFRelease(_ipv4socket);
         _ipv4socket = NULL;
-        return NO;
+        return [error autorelease];
     }
     
 	// now that the binding was successful, we get the port number 

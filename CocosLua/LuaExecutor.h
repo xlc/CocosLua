@@ -16,7 +16,7 @@
 
 + (LuaExecutor *)sharedExecutor;
 
-- (NSError *)loadFile:(NSString *)file;
-- (NSError *)loadString:(NSString *)string;
+- (NSError *)executeFile:(NSString *)file;
+- (NSError *)executeString:(NSString *)string;
 
 @end

@@ -85,14 +85,10 @@
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
     
-
-    
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-    
-    [LuaExecutor sharedExecutor];
-    
 //    [director_ pushScene:[NSClassFromString(@"LuaScene") node]];
-    
+    [[LuaExecutor sharedExecutor] executeFile:@"main"];
+//    UITextField *view = [[[UITextView alloc] initWithFrame:
 	return YES;
 }
 

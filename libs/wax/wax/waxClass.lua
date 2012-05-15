@@ -33,7 +33,6 @@ function waxInlineClass(options)
     wax.class.addProtocols(class, protocol)
   end
   
-  local _ENV = _ENV
   class._M = setmetatable({
       self = class,
     },

@@ -104,16 +104,6 @@ wax_instance_userdata *wax_instance_create(lua_State *L, id instance, BOOL isCla
     lua_rawset(L, -3);
         
     lua_pop(L, 1); // Pop off userdata table
-
-    
-    wax_instance_pushStrongUserdataTable(L);
-    lua_pushlightuserdata(L, instanceUserdata->instance);
-    lua_pushvalue(L, -3); // Push userdata
-    lua_rawset(L, -3);
-    
-    //wax_log(LOG_GC, @"Storing reference to strong userdata table %@(%p -> %p)", [instance class], instance, instanceUserdata);        
-    
-    lua_pop(L, 1); // Pop off strong userdata table
     
     END_STACK_MODIFY(L, 1)
     
@@ -188,27 +178,6 @@ void wax_instance_pushUserdataTable(lua_State *L) {
     
     END_STACK_MODIFY(L, 1)
 }
-
-// Holds strong references to userdata created by wax... if the retain count dips below
-// 2, then we can remove it because we know obj-c doesn't care about it anymore
-void wax_instance_pushStrongUserdataTable(lua_State *L) {
-    BEGIN_STACK_MODIFY(L)
-    static const char* userdataTableName = "__wax_strong_userdata";
-    luaL_getmetatable(L, WAX_INSTANCE_METATABLE_NAME);
-    lua_getfield(L, -1, userdataTableName);
-    
-    if (lua_isnil(L, -1)) { // Create new userdata table, add it to metatable
-        lua_pop(L, 1); // Remove nil
-        
-        lua_pushstring(L, userdataTableName); // Table name
-        lua_newtable(L);        
-        lua_rawset(L, -3); // Add userdataTableName table to WAX_INSTANCE_METATABLE_NAME      
-        lua_getfield(L, -1, userdataTableName);
-    }
-    
-    END_STACK_MODIFY(L, 1)
-}
-
 
 // First look in the object's userdata for the function, then look in the object's class's userdata
 BOOL wax_instance_pushFunction(lua_State *L, id self, SEL selector) {

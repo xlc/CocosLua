@@ -525,12 +525,10 @@
 
 #define LUA_COMPAT_MODULE
 
-extern char *ScriptSearchPath;
-
 #undef LUA_PATH_DEFAULT
-#define LUA_PATH_DEFAULT ScriptSearchPath
+#define LUA_PATH_DEFAULT "Scripts/?.lua;Scripts/?/init.lua;?.lua;?/init.lua;"
 #undef LUA_CPATH_DEFAULT
-#define LUA_CPATH_DEFAULT ScriptSearchPath
+#define LUA_CPATH_DEFAULT ""
 
 #endif
 

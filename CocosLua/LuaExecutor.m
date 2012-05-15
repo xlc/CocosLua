@@ -24,13 +24,14 @@
 
 #include "wax.h"
 
-char *ScriptSearchPath = NULL;
+static int print(lua_State *L);
 
 static LuaExecutor *sharedExecutor;
 
 @interface LuaExecutor ()
 
 - (void)loadLibs;
+- (void)luaPrint:(NSString *)message;
 
 @end
 
@@ -38,18 +39,14 @@ static LuaExecutor *sharedExecutor;
 
 @synthesize state = _state;
 
-+ (void)initialize {
-    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-    NSString *path = [NSString stringWithFormat:@"%@/?.lua;%@/?/init.lua;%@/Scripts/?.lua;%@/Scripts/?/init.lua", bundlePath, bundlePath, bundlePath, bundlePath];
-    ScriptSearchPath = malloc(sizeof(char) * [path length] + 1);
-    [path getCString:ScriptSearchPath maxLength:[path length] + 1 encoding:NSASCIIStringEncoding];
-    [CCLabelTTF class]; // pull cocos2d runtime
-}
-
 + (LuaExecutor *)sharedExecutor {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedExecutor = [[LuaExecutor alloc] init];
+    });
+    static dispatch_once_t onceToken2;
+    dispatch_once(&onceToken2, ^{
+        [sharedExecutor loadLibs];
     });
     return sharedExecutor;
 }
@@ -58,9 +55,7 @@ static LuaExecutor *sharedExecutor;
 {
     self = [super init];
     if (self) {
-        wax_setup();
         _state = wax_currentLuaState();
-        [self loadLibs];
     }
     return self;
 }
@@ -75,13 +70,13 @@ static LuaExecutor *sharedExecutor;
 #pragma mark -
 
 - (void)loadLibs {
+    [[NSFileManager defaultManager] changeCurrentDirectoryPath:[[NSBundle mainBundle] bundlePath]];
+    
     // load std libs
-//    luaL_openlibs(_state);
+    luaL_openlibs(_state);
     
     // load c libs
-//    luaopen_wax_class(_state);
-//    luaopen_wax_instance(_state);
-//    luaopen_wax_struct(_state);
+    luaopen_wax(_state);
     luaopen_wax_CGContext(_state);
     luaopen_wax_CGTransform(_state);
     luaopen_wax_http(_state);
@@ -90,19 +85,23 @@ static LuaExecutor *sharedExecutor;
     luaopen_wax_sqlite(_state);
     luaopen_wax_xml(_state);
     
+    // load custom functinos
+    lua_register(_state, "print", print);
+    
     // load lua libs
-    MASSERT_ERROR([self loadFile:@"wax"]);
-    MASSERT_ERROR([self loadFile:@"init"]);
+    MASSERT_NOERR([self executeFile:@"wax"]);
+    MASSERT_NOERR([self executeFile:@"init"]);
+    
 }
 
 #pragma mark -
 
-- (NSError *)loadFile:(NSString *)file {
+- (NSError *)executeFile:(NSString *)file {
     NSString *string = [NSString stringWithFormat:@"require('%@')", file];
-    return [self loadString:string];
+    return [self executeString:string];
 }
 
-- (NSError *)loadString:(NSString *)string {
+- (NSError *)executeString:(NSString *)string {
     int ret = luaL_dostring(_state, [string UTF8String]);
     if (ret) {
         NSString *errorStr = [NSString stringWithCString:lua_tostring(_state,-1) encoding:NSUTF8StringEncoding];
@@ -116,4 +115,17 @@ static LuaExecutor *sharedExecutor;
     return nil;
 }
 
+#pragma mark -
+
+- (void)luaPrint:(NSString *)message {
+    NSLog(@"lua: %@", message);
+}
+
 @end
+
+static int print(lua_State *L) {
+    const char *str = luaL_checkstring(L, -1);
+    NSString *message = [[[NSString alloc] initWithCString:str encoding:NSUTF8StringEncoding] autorelease];
+    [sharedExecutor luaPrint:message];
+    return 0;
+}
