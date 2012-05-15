@@ -141,9 +141,10 @@ static LuaConsole *sharedConsole;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    _textView.contentInset = contentInsets;
-    _textView.scrollIndicatorInsets = contentInsets;
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    CGRect frame = _textView.frame;
+    frame.size = size;
+    _textView.frame = frame;
 }
 
 #pragma mark - UITextViewDelegate

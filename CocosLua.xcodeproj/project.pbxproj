@@ -2017,6 +2017,7 @@
 		06CD5B80155E85FF005206AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CocosLua/CocosLua-Prefix.pch";
 				INFOPLIST_FILE = "CocosLua/CocosLua-Info.plist";
