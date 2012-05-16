@@ -456,17 +456,29 @@ void *wax_copyToObjc(lua_State *L, const char *typeDescription, int stackIndex, 
 
                 case LUA_TTABLE: {
                     BOOL dictionary = NO;
+                    int idxshift = -1;
+                    NSUInteger maxIdx = 0;
                     
                     lua_pushvalue(L, stackIndex); // Push the table reference on the top
                     lua_pushnil(L);  /* first key */
                     while (!dictionary && lua_next(L, -2)) {
-                        if (lua_type(L, -2) != LUA_TNUMBER) {
-                            dictionary = YES;                        
-                            lua_pop(L, 2); // pop key and value off the stack
+                        if (lua_type(L, -2) == LUA_TNUMBER) {
+                            int isunsign = 0;
+                            lua_Unsigned idx = lua_tounsignedx(L, -2, &isunsign);
+                            if (isunsign) {
+                                if (idx == 0) {
+                                    idxshift = 0;
+                                }
+                                if (idx > maxIdx) {
+                                    maxIdx = idx;
+                                }
+                                // TODO if too many gaps in the array we want it to be dict?
+                                lua_pop(L, 1);
+                                continue;
+                            }
                         }
-                        else {
-                            lua_pop(L, 1);
-                        }
+                        dictionary = YES;                        
+                        lua_pop(L, 2); // pop key and value off the stack
                     }
                                         
                     if (dictionary) {
@@ -483,16 +495,20 @@ void *wax_copyToObjc(lua_State *L, const char *typeDescription, int stackIndex, 
                         }                        
                     }
                     else {
-                        instance = [NSMutableArray array];
-                        
+                        maxIdx += idxshift+1;
+                        NSMutableArray *array = [NSMutableArray arrayWithCapacity:maxIdx];
+                        for (int i = 0; i < maxIdx; i++) {
+                            [array addObject:[NSNull null]];
+                        }
                         lua_pushnil(L);  /* first key */
                         while (lua_next(L, -2)) {
-                            int index = lua_tonumber(L, -2) - 1;
+                            int index = lua_tounsigned(L, -2) + idxshift;
                             id *object = wax_copyToObjc(L, "@", -1, nil);
-                            [instance insertObject:*object atIndex:index];
+                            [array replaceObjectAtIndex:index withObject:*object];
                             lua_pop(L, 1);
                             free(object);
-                        }                                
+                        }
+                        instance = array;
                     }
                       
                     lua_pop(L, 1); // Pop the table reference off 
