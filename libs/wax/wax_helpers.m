@@ -254,6 +254,9 @@ void wax_fromInstance(lua_State *L, id instance) {
 			}
 			lua_getfield(L, -1, "function");
 		}
+        else if ([instance isKindOfClass:[NSNull class]]) {
+			lua_pushnil(L);
+		}
         else {
             wax_instance_create(L, instance, NO);
         }
