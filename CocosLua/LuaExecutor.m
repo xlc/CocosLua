@@ -11,6 +11,8 @@
 #include "lauxlib.h"
 #include "lualib.h"
 
+#include "wax.h"
+#include "wax_helpers.h"
 #include "wax_class.h"
 #include "wax_instance.h"
 #include "wax_struct.h"
@@ -22,12 +24,11 @@
 #include "wax_sqlite.h"
 #include "wax_xml.h"
 
-#include "wax.h"
-
 #import "LuaConsole.h"
 
 static int print(lua_State *L);
 static const char *reader(lua_State *L, void *data, size_t *size);
+static int traceback (lua_State *L);
 
 typedef struct LuaReaderInfo {
 NSString *string;
@@ -40,6 +41,7 @@ static LuaExecutor *sharedExecutor;
 
 - (void)loadLibs;
 - (void)luaPrint:(NSString *)message;
+- (NSError *)createErrorWithStatus:(int)status oldtop:(int)oldtop description:(NSString *)desc;
 
 @end
 
@@ -102,6 +104,28 @@ static LuaExecutor *sharedExecutor;
     lua_gc(L, LUA_GCRESTART, 0);
 }
 
+- (NSError *)createErrorWithStatus:(int)status oldtop:(int)oldtop description:(NSString *)desc {
+    int newtop = lua_gettop(L);
+    if (status == LUA_OK) {
+        lua_pop(L, newtop - oldtop);
+        return nil;
+    }
+    id errorMsg;
+    if (newtop - oldtop == 1)
+        errorMsg = [self pop];
+    else
+        errorMsg = [self popObjects:newtop - oldtop];
+    if (errorMsg == nil) {
+        errorMsg = @"Unknown reason";
+    }
+    return [NSError errorWithDomain:APP_ERROR_DOMAIN
+                               code:status
+                           userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     desc, NSLocalizedDescriptionKey,
+                                     errorMsg, NSLocalizedFailureReasonErrorKey,
+                                     nil]];
+}
+
 #pragma mark -
 
 - (NSError *)executeFile:(NSString *)file {
@@ -110,23 +134,67 @@ static LuaExecutor *sharedExecutor;
 }
 
 - (NSError *)executeString:(NSString *)string {
-    int ret = luaL_dostring(L, [string UTF8String]);
-    if (ret) {
-        NSString *errorStr = [NSString stringWithCString:lua_tostring(L,-1) encoding:NSUTF8StringEncoding];
-        return [NSError errorWithDomain:APP_ERROR_DOMAIN
-                                   code:ret
-                               userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                         @"Failed to load script", NSLocalizedDescriptionKey,
-                                         errorStr, NSLocalizedFailureReasonErrorKey,
-                                         nil]];
-    }
-    return nil;
+    int oldtop = lua_gettop(L);
+    int status = luaL_dostring(L, [string UTF8String]);
+    return [self createErrorWithStatus:status
+                                oldtop:oldtop
+                           description:[NSString stringWithFormat:@"Fail to execute string '%@'", string]];
 }
 
-#define EOFMARK		"<eof>"
-#define marklen		(sizeof(EOFMARK)/sizeof(char) - 1)
+- (NSArray *)executeFunction:(NSString *)function args:(NSArray *)args error:(NSError **)error {
+    int oldtop = lua_gettop(L);
+    lua_getglobal(L, [function UTF8String]);
+    if( !lua_isfunction(L, -1) ) {
+        lua_pop(L,1);
+        *error = [NSError errorWithDomain:APP_ERROR_DOMAIN
+                                     code:1
+                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                           [NSString stringWithFormat:@"'%@' is not a lua function", function], NSLocalizedDescriptionKey,
+                                           nil]];
+        return nil;
+    }
+    [self pushObjects:args];
+    int narg = [args count];
+    int base = lua_gettop(L) - narg;  /* function index */
+    lua_pushcfunction(L, traceback);  /* push traceback function */
+    lua_insert(L, base);  /* put it under chunk and args */
+    int status = lua_pcall(L, narg, LUA_MULTRET, base);
+    lua_remove(L, base);
+    int newtop = lua_gettop(L);
+    if (status == LUA_OK) {  /* any result to print? */
+        *error = nil;
+        return [self popObjects:newtop - oldtop];
+    } else {
+        *error = [self createErrorWithStatus:status
+                                      oldtop:oldtop
+                                 description:[NSString stringWithFormat:
+                                              @"Fail to execute function '%@' with arguments: %@", function, args]];
+        return nil;
+    }
+}
+
+- (NSArray *)executeString:(NSString *)string error:(NSError **)error {
+    int oldtop = lua_gettop(L);
+    int status = luaL_dostring(L, [string UTF8String]);
+    int newtop = lua_gettop(L);
+    if (status == LUA_OK) {  /* any result to print? */
+        *error = nil;
+        return [self popObjects:newtop - oldtop];
+    } else {
+        *error = [self createErrorWithStatus:status
+                                      oldtop:oldtop
+                                 description:[NSString stringWithFormat:
+                                              @"Fail to execute sting '%@'", string]];
+        return nil;
+    }
+    
+}
+
+#define EOFMARK "<eof>"
 
 - (NSError *)checkString:(NSString *)string completed:(BOOL *)completed {
+    const size_t marklen = (sizeof(EOFMARK)/sizeof(char) - 1);
+    
     LuaReaderInfo info = {string, NO};
     int status = lua_load(L, reader, (void *)&info, [string UTF8String], NULL);
     switch (status) {
@@ -166,6 +234,39 @@ static LuaExecutor *sharedExecutor;
     }
 }
 
+- (void)push:(id)obj {
+    wax_fromInstance(L, obj);
+}
+
+- (id)pop {
+    id *instancePointer = wax_copyToObjc(L, "@", -1, nil);
+    lua_pop(L, 1);
+    id instance = *(id *)instancePointer;
+    if (instancePointer) free(instancePointer);
+    return instance;
+}
+
+- (void)pushObjects:(NSArray *)objs {
+    lua_checkstack(L, [objs count]);
+    for (id obj in objs) {
+        [self push:obj];
+    }
+}
+
+- (NSArray *)popObjects:(NSUInteger)count {
+    if (count == 0)
+        return nil;
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i < count; i++) {
+        id obj = [self pop];
+        if (obj == nil) {
+            obj = [NSNull null];
+        }
+        [array insertObject:obj atIndex:0];
+    }
+    return array;
+}
+
 #pragma mark -
 
 - (void)luaPrint:(NSString *)message {
@@ -192,4 +293,15 @@ static const char *reader(lua_State *L, void *data, size_t *size) {
     NSString *string = info->string;
     *size = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
     return [string UTF8String];
+}
+
+static int traceback (lua_State *L) {
+    const char *msg = lua_tostring(L, 1);
+    if (msg)
+        luaL_traceback(L, L, msg, 1);
+    else if (!lua_isnoneornil(L, 1)) {  /* is there an error object? */
+        if (!luaL_callmeta(L, 1, "__tostring"))  /* try its 'tostring' metamethod */
+            lua_pushliteral(L, "(no error message)");
+    }
+    return 1;
 }

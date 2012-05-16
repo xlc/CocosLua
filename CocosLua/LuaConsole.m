@@ -18,6 +18,7 @@ static LuaConsole *sharedConsole;
 
 - (void)appendError:(NSError *)error;
 - (void)appendPromtWithFirstLine:(BOOL)firstline;
+- (void)appendArray:(NSArray *)array;
 
 - (void)keyboardDidShow:(NSNotification *)notification;
 - (void)keyboardWillHide:(NSNotification *)notification;
@@ -128,6 +129,18 @@ static LuaConsole *sharedConsole;
     [self appendMessage:message];
 }
 
+- (void)appendArray:(NSArray *)array {
+    NSMutableString *buff = [NSMutableString string];
+    for (id obj in array) {
+        if (obj == [NSNull null]) {
+            [buff appendFormat:@"nil, \t"];
+        } else
+            [buff appendFormat:@"%@, \t", obj];
+    }
+    [buff deleteCharactersInRange:NSMakeRange([buff length] - 3, 3)];
+    [self appendMessage:buff];
+}
+
 #pragma mark - Keyboard Notification
 
 - (void)keyboardDidShow:(NSNotification *)notification {
@@ -154,6 +167,11 @@ static LuaConsole *sharedConsole;
     if (range.location < _lastPosition) { // not able to modify fixed text
         return NO;
     }
+    if ([text isEqualToString:@"\n"] && range.location != [_text length]) {
+        _textView.text = _text;
+        _changeContainNewLine = YES;
+        return NO;
+    }
     [_text deleteCharactersInRange:range];
     [_text insertString:text atIndex:range.location];
     NSRange newlinepos = [text rangeOfString:@"\n"];
@@ -163,22 +181,25 @@ static LuaConsole *sharedConsole;
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-    NSRange newlinepos;
     if (_changeContainNewLine) {
-        NSString *remain = [_text substringFromIndex:_lastPosition];
-        newlinepos = [remain rangeOfString:@"\n" options:NSBackwardsSearch range:NSMakeRange(0, remain.length)];
-        NSString *scriptString = [remain substringToIndex:newlinepos.location];
+        NSString *scriptString = [_text substringFromIndex:_lastPosition];;
         BOOL completed;
         LuaExecutor *executor = [LuaExecutor sharedExecutor];
         [_buffer appendString:scriptString];
+        if ([_buffer characterAtIndex:0] == '=') {
+            [_buffer replaceCharactersInRange:NSMakeRange(0, 1) withString:@"return "];
+        }
         NSError *error = [executor checkString:_buffer completed:&completed];
         if (error) {
             [self appendError:error];
             [_buffer setString:@""];    // clear buffer
         } else if (completed) {
-            NSError *error = [executor executeString:_buffer];
+            NSArray *result = [executor executeString:_buffer error:&error];
             if (error) {
                 [self appendError:error];
+            } else {
+                if (result)
+                    [self appendArray:result];
             }
             [_buffer setString:@""];    // clear buffer
         }

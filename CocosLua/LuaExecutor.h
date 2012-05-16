@@ -19,5 +19,12 @@
 - (NSError *)executeFile:(NSString *)file;
 - (NSError *)executeString:(NSString *)string;
 - (NSError *)checkString:(NSString *)string completed:(BOOL *)completed;
+- (NSArray *)executeFunction:(NSString *)function args:(NSArray *)args error:(NSError **)error;
+- (NSArray *)executeString:(NSString *)string error:(NSError **)error;
+
+- (void)push:(id)obj;
+- (id)pop;
+- (void)pushObjects:(NSArray *)objs;
+- (NSArray *)popObjects:(NSUInteger)count;
 
 @end
