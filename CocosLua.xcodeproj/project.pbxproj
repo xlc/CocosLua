@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		065C99201564EE650088C945 /* LuaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C991F1564EE650088C945 /* LuaServer.m */; };
+		065C99231564EE940088C945 /* TCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C99221564EE940088C945 /* TCPServer.m */; };
 		06834A6C155FAD2F001A1F44 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D853B155F63610074CEF2 /* libxml2.dylib */; };
 		06834A6E155FAD36001A1F44 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06834A6D155FAD36001A1F44 /* libsqlite3.dylib */; };
 		06834AE7155FB30B001A1F44 /* MLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = 06834AE6155FB30B001A1F44 /* MLogger.c */; };
@@ -55,8 +57,6 @@
 		06834C6A1560FBE1001A1F44 /* wax_helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C011560FBE1001A1F44 /* wax_helpers.m */; };
 		06834C6B1560FBE1001A1F44 /* wax_instance.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834C021560FBE1001A1F44 /* wax_instance.h */; };
 		06834C6C1560FBE1001A1F44 /* wax_instance.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C031560FBE1001A1F44 /* wax_instance.m */; };
-		06834C6D1560FBE1001A1F44 /* wax_server.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834C041560FBE1001A1F44 /* wax_server.h */; };
-		06834C6E1560FBE1001A1F44 /* wax_server.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C051560FBE1001A1F44 /* wax_server.m */; };
 		06834C701560FBE1001A1F44 /* wax_struct.h in Headers */ = {isa = PBXBuildFile; fileRef = 06834C071560FBE1001A1F44 /* wax_struct.h */; };
 		06834C711560FBE1001A1F44 /* wax_struct.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834C081560FBE1001A1F44 /* wax_struct.m */; };
 		06834DD015623369001A1F44 /* LuaConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 06834DCF15623369001A1F44 /* LuaConsole.m */; };
@@ -580,6 +580,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		065C991E1564EE650088C945 /* LuaServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaServer.h; sourceTree = "<group>"; };
+		065C991F1564EE650088C945 /* LuaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaServer.m; sourceTree = "<group>"; };
+		065C99211564EE940088C945 /* TCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPServer.h; sourceTree = "<group>"; };
+		065C99221564EE940088C945 /* TCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPServer.m; sourceTree = "<group>"; };
 		06834A6D155FAD36001A1F44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		06834AE5155FB30B001A1F44 /* MLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLogger.h; sourceTree = "<group>"; };
 		06834AE6155FB30B001A1F44 /* MLogger.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MLogger.c; sourceTree = "<group>"; };
@@ -630,8 +634,6 @@
 		06834C011560FBE1001A1F44 /* wax_helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_helpers.m; sourceTree = "<group>"; };
 		06834C021560FBE1001A1F44 /* wax_instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_instance.h; sourceTree = "<group>"; };
 		06834C031560FBE1001A1F44 /* wax_instance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_instance.m; sourceTree = "<group>"; };
-		06834C041560FBE1001A1F44 /* wax_server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_server.h; sourceTree = "<group>"; };
-		06834C051560FBE1001A1F44 /* wax_server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_server.m; sourceTree = "<group>"; };
 		06834C071560FBE1001A1F44 /* wax_struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_struct.h; sourceTree = "<group>"; };
 		06834C081560FBE1001A1F44 /* wax_struct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wax_struct.m; sourceTree = "<group>"; };
 		06834DCE15623369001A1F44 /* LuaConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaConsole.h; sourceTree = "<group>"; };
@@ -781,6 +783,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		065C991D1564EE4B0088C945 /* LuaServer */ = {
+			isa = PBXGroup;
+			children = (
+				065C991E1564EE650088C945 /* LuaServer.h */,
+				065C991F1564EE650088C945 /* LuaServer.m */,
+			);
+			name = LuaServer;
+			sourceTree = "<group>";
+		};
 		06834AE8155FB340001A1F44 /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,6 +799,8 @@
 				06CD5B7B155E85FF005206AA /* AppDelegate.m */,
 				06834AE5155FB30B001A1F44 /* MLogger.h */,
 				06834AE6155FB30B001A1F44 /* MLogger.c */,
+				065C99211564EE940088C945 /* TCPServer.h */,
+				065C99221564EE940088C945 /* TCPServer.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -805,8 +818,6 @@
 				06834C011560FBE1001A1F44 /* wax_helpers.m */,
 				06834C021560FBE1001A1F44 /* wax_instance.h */,
 				06834C031560FBE1001A1F44 /* wax_instance.m */,
-				06834C041560FBE1001A1F44 /* wax_server.h */,
-				06834C051560FBE1001A1F44 /* wax_server.m */,
 				06834C071560FBE1001A1F44 /* wax_struct.h */,
 				06834C081560FBE1001A1F44 /* wax_struct.m */,
 			);
@@ -1132,6 +1143,7 @@
 		069D85AB155F89EE0074CEF2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				065C991D1564EE4B0088C945 /* LuaServer */,
 				06834DCD15623332001A1F44 /* LuaConsole */,
 				069D8621155F8CF00074CEF2 /* LuaExecutor */,
 				06834AE8155FB340001A1F44 /* Other */,
@@ -1269,7 +1281,6 @@
 				06834C651560FBE1001A1F44 /* wax_class.h in Headers */,
 				06834C691560FBE1001A1F44 /* wax_helpers.h in Headers */,
 				06834C6B1560FBE1001A1F44 /* wax_instance.h in Headers */,
-				06834C6D1560FBE1001A1F44 /* wax_server.h in Headers */,
 				06834C701560FBE1001A1F44 /* wax_struct.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1855,7 +1866,6 @@
 				06834C661560FBE1001A1F44 /* wax_class.m in Sources */,
 				06834C6A1560FBE1001A1F44 /* wax_helpers.m in Sources */,
 				06834C6C1560FBE1001A1F44 /* wax_instance.m in Sources */,
-				06834C6E1560FBE1001A1F44 /* wax_server.m in Sources */,
 				06834C711560FBE1001A1F44 /* wax_struct.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1869,6 +1879,8 @@
 				069D8624155F8D0E0074CEF2 /* LuaExecutor.m in Sources */,
 				06834AE7155FB30B001A1F44 /* MLogger.c in Sources */,
 				06834DD015623369001A1F44 /* LuaConsole.m in Sources */,
+				065C99201564EE650088C945 /* LuaServer.m in Sources */,
+				065C99231564EE940088C945 /* TCPServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
