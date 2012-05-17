@@ -165,6 +165,9 @@ static LuaConsole *sharedConsole;
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     _changeContainNewLine = NO;
     if (range.location < _lastPosition) { // not able to modify fixed text
+        [textView setSelectedRange:NSMakeRange(_lastPosition, 0)];
+        [_text appendString:text];
+        _textView.text = _text;
         return NO;
     }
     if ([text isEqualToString:@"\n"] && range.location != [_text length]) {
