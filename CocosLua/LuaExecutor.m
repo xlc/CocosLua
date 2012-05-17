@@ -239,7 +239,7 @@ static LuaExecutor *sharedExecutor;
 }
 
 - (id)pop {
-    id *instancePointer = wax_copyToObjc(L, "@", -1, nil);
+    id *instancePointer = wax_copyToObjc(L, "@", -1, nil);      // TODO have handle value that is not object
     lua_pop(L, 1);
     id instance = *(id *)instancePointer;
     if (instancePointer) free(instancePointer);
@@ -277,9 +277,20 @@ static LuaExecutor *sharedExecutor;
 @end
 
 static int print(lua_State *L) {
-    const char *str = luaL_checkstring(L, -1);
-    NSString *message = [[[NSString alloc] initWithCString:str encoding:NSUTF8StringEncoding] autorelease];
-    [sharedExecutor luaPrint:message];
+    NSMutableArray *tobeprint = [NSMutableArray array];
+    while (lua_gettop(L) != 0) {
+        lua_getglobal(L, "tostring");
+        lua_insert(L, -2);
+        lua_call(L, 1, 1);
+        const char *str = luaL_checkstring(L, -1);
+        NSString *message = [[[NSString alloc] initWithUTF8String:str] autorelease];
+        [tobeprint insertObject:message atIndex:0];
+        lua_pop(L, 1);
+    }
+    for (NSString *s in tobeprint) {
+        [sharedExecutor luaPrint:s];
+    }
+    
     return 0;
 }
 
