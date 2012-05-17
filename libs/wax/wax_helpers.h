@@ -92,6 +92,7 @@ void wax_selectorsForName(const char *methodName, SEL selectors[2]);
 BOOL wax_selectorForInstance(wax_instance_userdata *instanceUserdata, SEL* foundSelectors, const char *methodName, BOOL forceInstanceCheck);
 void wax_pushMethodNameFromSelector(lua_State *L, SEL selector);
 BOOL wax_isInitMethod(const char *methodName);
+BOOL wax_isAllocOrCopyOrNewMethod(const char *methodName);
 
 const char *wax_removeProtocolEncodings(const char *type_descriptions);
 

@@ -660,6 +660,22 @@ BOOL wax_isInitMethod(const char *methodName) {
     return NO;
 }
 
+BOOL wax_isAllocOrCopyOrNewMethod(const char *methodName) {
+    if (strncmp(methodName, "copy", 4) == 0) {
+        if (methodName[4] == '\0') return YES; // It's just an copy
+        if (isupper(methodName[4]) || isdigit(methodName[4])) return YES; // It's copy[A-Z0-9]
+    }
+    if (strncmp(methodName, "new", 3) == 0) {
+        if (methodName[3] == '\0') return YES; // It's just an new
+        if (isupper(methodName[3]) || isdigit(methodName[3])) return YES; // It's new[A-Z0-9]
+    }
+    if (strncmp(methodName, "alloc", 5) == 0) {
+        if (methodName[5] == '\0') return YES; // It's just an alloc
+        if (isupper(methodName[5]) || isdigit(methodName[5])) return YES; // It's alloc[A-Z0-9]
+    }
+    return NO;
+}
+
 // I could get rid of this <- Then why don't you?
 const char *wax_removeProtocolEncodings(const char *type_descriptions) {
     switch (type_descriptions[0]) {

@@ -385,9 +385,15 @@ static int methodClosure(lua_State *L) {
     BOOL autoAlloc = NO;
         
     // If init is called on a class, auto-allocate it.    
-    if (instanceUserdata->isClass && wax_isInitMethod(selectorName)) {
-        autoAlloc = YES;
-        instance = [instance alloc];
+    if (instanceUserdata->isClass) {
+        if (wax_isInitMethod(selectorName)) {
+            autoAlloc = YES;
+            instance = [instance alloc];
+        } else {
+            if (wax_isAllocOrCopyOrNewMethod(selectorName)) {  // we want to release the extra count from `copy` or `new` as well
+                autoAlloc = YES;
+            }
+        }
     }
     
     NSMethodSignature *signature = [instance methodSignatureForSelector:selector];

@@ -11,7 +11,6 @@
 #import "wax_instance.h"
 #import "wax_struct.h"
 #import "wax_helpers.h"
-#import "wax_server.h"
 
 #import "lauxlib.h"
 #import "lobject.h"
@@ -63,12 +62,6 @@ void luaopen_wax(lua_State *L) {
     luaopen_wax_struct(L);
     
     addGlobals(L);
-}
-
-void wax_startWithServer() {			
-	Class WaxServer = objc_getClass("WaxServer");
-	
-	[(id)WaxServer start];
 }
 
 void wax_end() {

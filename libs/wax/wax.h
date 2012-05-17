@@ -4,7 +4,6 @@
 #import <Foundation/Foundation.h>
 #import "lua.h"
 
-void wax_startWithServer();
 void wax_end();
 
 lua_State *wax_currentLuaState();
