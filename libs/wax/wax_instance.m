@@ -277,7 +277,13 @@ static int __index(lua_State *L) {
             lua_pushstring(L, sel_getName(foundSelectors[0]));
             foundSelectors[1] ? lua_pushstring(L, sel_getName(foundSelectors[1])) : lua_pushnil(L);
             lua_pushcclosure(L, instanceUserdata->actAsSuper ? superMethodClosure : methodClosure, 2);
+        } else {
+            const char *instanceDesc = instanceUserdata->isClass ? [[instanceUserdata->instance description] UTF8String] : [[[instanceUserdata->instance class] description] UTF8String];
+            SEL sels[2];
+            wax_selectorsForName(lua_tostring(L, 2), sels);
+            luaL_error(L, "%s[%s %s]: unrecognized selector sent to instance %p", instanceUserdata->isClass ? "+" : "-", instanceDesc, sels[0], instanceUserdata->instance);
         }
+        
     }
     else if (!instanceUserdata->isSuper && instanceUserdata->isClass && wax_isInitMethod(lua_tostring(L, 2))) { // Is this an init method create in lua?
         lua_pushcclosure(L, customInitMethodClosure, 1);
