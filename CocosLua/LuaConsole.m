@@ -106,6 +106,10 @@ static LuaConsole *sharedConsole;
 - (void)appendMessage:(NSString *)msg { // TODO what happen when user is typeing?
     if (!msg) return;
     
+    NSRange range = [_text rangeOfString:@"> " options:NSBackwardsSearch];
+    if (range.length + range.location == [_text length]) {
+        [_text deleteCharactersInRange:range];
+    }
     if ([_text characterAtIndex:[_text length]-1] != '\n')
         [_text appendString:@"\n"];
     [_text appendString:msg];
@@ -113,14 +117,12 @@ static LuaConsole *sharedConsole;
 }
 
 - (void)appendPromptWithFirstLine:(BOOL)firstline {
+    NSRange range = [_text rangeOfString:@"> " options:NSBackwardsSearch];
+    if (range.length + range.location == [_text length]) {
+        [_text deleteCharactersInRange:range];
+    }
     if ([_text characterAtIndex:[_text length]-1] != '\n') {
         [_text appendString:@"\n"];
-    }
-    if (firstline) {
-        NSRange range = [_text rangeOfString:@"> " options:NSBackwardsSearch];
-        if (range.length + range.location == [_text length]-1) {
-            return; // already have promt, so no need to print it again
-        }
     }
     if (firstline)
         [_text appendString:@"> "];
