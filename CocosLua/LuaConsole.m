@@ -17,7 +17,7 @@ static LuaConsole *sharedConsole;
 @property (nonatomic) UITextView *textView;
 
 - (void)appendError:(NSError *)error;
-- (void)appendPromtWithFirstLine:(BOOL)firstline;
+- (void)appendPromptWithFirstLine:(BOOL)firstline;
 - (void)appendArray:(NSArray *)array;
 
 - (void)keyboardDidShow:(NSNotification *)notification;
@@ -64,7 +64,7 @@ static LuaConsole *sharedConsole;
         
         _text = [[NSMutableString alloc] initWithCapacity:200];
         [_text appendString:@"LuaConsole:\n"];
-        [self appendPromtWithFirstLine:YES];
+        [self appendPromptWithFirstLine:YES];
         
         _buffer = [[NSMutableString alloc] initWithCapacity:200];
         
@@ -109,13 +109,19 @@ static LuaConsole *sharedConsole;
     if ([_text characterAtIndex:[_text length]-1] != '\n')
         [_text appendString:@"\n"];
     [_text appendString:msg];
-    _lastPosition = [_text length];
-    _textView.text = _text;
+    [self appendPromptWithFirstLine:YES];
 }
 
-- (void)appendPromtWithFirstLine:(BOOL)firstline {
-    if ([_text characterAtIndex:[_text length]-1] != '\n')
+- (void)appendPromptWithFirstLine:(BOOL)firstline {
+    if ([_text characterAtIndex:[_text length]-1] != '\n') {
         [_text appendString:@"\n"];
+    }
+    if (firstline) {
+        NSRange range = [_text rangeOfString:@"> " options:NSBackwardsSearch];
+        if (range.length + range.location == [_text length]-1) {
+            return; // already have promt, so no need to print it again
+        }
+    }
     if (firstline)
         [_text appendString:@"> "];
     else
@@ -207,7 +213,7 @@ static LuaConsole *sharedConsole;
             [_buffer setString:@""];    // clear buffer
         }
         
-        [self appendPromtWithFirstLine:completed];
+        [self appendPromptWithFirstLine:completed];
     }
 }
 
