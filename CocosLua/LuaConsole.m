@@ -16,9 +16,7 @@ static LuaConsole *sharedConsole;
 
 @property (nonatomic) UITextView *textView;
 
-- (void)appendError:(NSError *)error;
 - (void)appendPromptWithFirstLine:(BOOL)firstline;
-- (void)appendArray:(NSArray *)array;
 
 - (void)keyboardDidShow:(NSNotification *)notification;
 - (void)keyboardWillHide:(NSNotification *)notification;
@@ -105,7 +103,9 @@ static LuaConsole *sharedConsole;
     }
 }
 
-- (void)appendMessage:(NSString *)msg {
+- (void)appendMessage:(NSString *)msg { // TODO what happen when user is typeing?
+    if (!msg) return;
+    
     if ([_text characterAtIndex:[_text length]-1] != '\n')
         [_text appendString:@"\n"];
     [_text appendString:msg];
@@ -131,11 +131,15 @@ static LuaConsole *sharedConsole;
 }
 
 - (void)appendError:(NSError *)error {
+    if (!error) return;
+    
     NSString *message = [NSString stringWithFormat:@"error: %@", [[error userInfo] objectForKey:NSLocalizedFailureReasonErrorKey]];
     [self appendMessage:message];
 }
 
 - (void)appendArray:(NSArray *)array {
+    if (!array) return;
+    
     NSMutableString *buff = [NSMutableString string];
     for (id obj in array) {
         if (obj == [NSNull null]) {
@@ -207,8 +211,7 @@ static LuaConsole *sharedConsole;
             if (error) {
                 [self appendError:error];
             } else {
-                if (result)
-                    [self appendArray:result];
+                [self appendArray:result];
             }
             [_buffer setString:@""];    // clear buffer
         }

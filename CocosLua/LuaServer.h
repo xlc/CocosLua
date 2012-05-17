@@ -10,6 +10,11 @@
 
 @interface LuaServer : NSObject
 
+@property (nonatomic, readonly) BOOL started;
+
 + (LuaServer *)sharedServer;
+
+- (BOOL)start;
+- (void)stop;
 
 @end

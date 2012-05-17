@@ -16,5 +16,7 @@
 + (LuaConsole *)sharedConsole;
 
 - (void)appendMessage:(NSString *)msg;
+- (void)appendError:(NSError *)error;
+- (void)appendArray:(NSArray *)array;
 
 @end
