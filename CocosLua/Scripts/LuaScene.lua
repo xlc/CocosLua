@@ -1,6 +1,6 @@
 waxClass{ "LuaScene", CCScene }
 
-function init(self)
+function LuaScene:init()
 	self.super:init()
 	
     local size = CCDirector:sharedDirector():winSize()
