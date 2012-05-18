@@ -69,10 +69,11 @@ static LuaServer *sharedServer;
         MWLOG(@"Failed to start TCP server with error: %@", error);
         return NO;
     }
-    if (![_server enableBonjourWithDomain:nil applicationProtocol:@"CocosLua" name:nil]) {
+    if (![_server enableBonjourWithDomain:nil applicationProtocol:@"_cocoslua._tcp." name:nil]) {
         MWLOG(@"Failed to enable bonjour");
         return NO;
     }
+    _started = YES;
     return YES;
 }
 

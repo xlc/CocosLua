@@ -276,6 +276,8 @@ static LuaExecutor *sharedExecutor;
 
 @end
 
+#pragma mark -
+
 static int print(lua_State *L) {
     NSMutableArray *tobeprint = [NSMutableArray array];
     while (lua_gettop(L) != 0) {

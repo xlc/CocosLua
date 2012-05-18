@@ -215,7 +215,7 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
 - (BOOL) enableBonjourWithDomain:(NSString*)domain applicationProtocol:(NSString*)protocol name:(NSString*)name
 {
 	if(![domain length])
-		domain = @""; //Will use default Bonjour registration doamins, typically just ".local"
+		domain = @"local."; //Will use default Bonjour registration doamins, typically just ".local"
 	if(![name length])
 		name = @""; //Will use default Bonjour name, e.g. the name assigned to the device in iTunes
 	
@@ -228,8 +228,8 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
 		return NO;
 	
 	[self.netService scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    [self.netService setDelegate:self];
 	[self.netService publish];
-	[self.netService setDelegate:self];
 	
 	return YES;
 }

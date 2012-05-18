@@ -1,0 +1,11 @@
+//
+// Prefix header for all source files of the 'CocosLuaConsole' target in the 'CocosLuaConsole' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import "MLogger.h"
+#endif
+
+#define lua_c
+#define LUA_USE_MACOSX

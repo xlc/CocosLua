@@ -6,6 +6,8 @@
 //  Copyright (c) 2011年 Xiliang Chen. All rights reserved.
 //
 
+#include "MLogger.h"
+
 const char * const _MLogLevelName[] = {
     "Debug",
     "Info",
