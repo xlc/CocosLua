@@ -13,7 +13,7 @@ end
 
 function waxClass(options)
   local class = waxInlineClass(options)
-  setfenv(2, class._M)
+  --setfenv(2, class._M)
   return class
 end
 
