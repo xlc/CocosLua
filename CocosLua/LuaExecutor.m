@@ -146,11 +146,12 @@ static LuaExecutor *sharedExecutor;
     lua_getglobal(L, [function UTF8String]);
     if( !lua_isfunction(L, -1) ) {
         lua_pop(L,1);
-        *error = [NSError errorWithDomain:APP_ERROR_DOMAIN
-                                     code:1
-                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                           [NSString stringWithFormat:@"'%@' is not a lua function", function], NSLocalizedDescriptionKey,
-                                           nil]];
+        if (error)
+            *error = [NSError errorWithDomain:APP_ERROR_DOMAIN
+                                         code:1
+                                     userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                               [NSString stringWithFormat:@"'%@' is not a lua function", function], NSLocalizedDescriptionKey,
+                                               nil]];
         return nil;
     }
     [self pushObjects:args];
@@ -162,13 +163,15 @@ static LuaExecutor *sharedExecutor;
     lua_remove(L, base);
     int newtop = lua_gettop(L);
     if (status == LUA_OK) {  /* any result to print? */
-        *error = nil;
+        if (error)
+            *error = nil;
         return [self popObjects:newtop - oldtop];
     } else {
-        *error = [self createErrorWithStatus:status
-                                      oldtop:oldtop
-                                 description:[NSString stringWithFormat:
-                                              @"Fail to execute function '%@' with arguments: %@", function, args]];
+        if (error)
+            *error = [self createErrorWithStatus:status
+                                          oldtop:oldtop
+                                     description:[NSString stringWithFormat:
+                                                  @"Fail to execute function '%@' with arguments: %@", function, args]];
         return nil;
     }
 }
@@ -178,13 +181,15 @@ static LuaExecutor *sharedExecutor;
     int status = luaL_dostring(L, [string UTF8String]);
     int newtop = lua_gettop(L);
     if (status == LUA_OK) {  /* any result to print? */
-        *error = nil;
+        if (error)
+            *error = nil;
         return [self popObjects:newtop - oldtop];
     } else {
-        *error = [self createErrorWithStatus:status
-                                      oldtop:oldtop
-                                 description:[NSString stringWithFormat:
-                                              @"Fail to execute sting '%@'", string]];
+        if (error)
+            *error = [self createErrorWithStatus:status
+                                          oldtop:oldtop
+                                     description:[NSString stringWithFormat:
+                                                  @"Fail to execute sting '%@'", string]];
         return nil;
     }
     
@@ -218,7 +223,7 @@ static LuaExecutor *sharedExecutor;
             if (!lua_isnil(L, -1)) {
                 const char *msg = lua_tostring(L, -1);
                 if (msg) {
-                    error = [[NSString alloc] initWithCString:msg encoding:NSUTF8StringEncoding];
+                    error = [[[NSString alloc] initWithCString:msg encoding:NSUTF8StringEncoding] autorelease];
                 }
                 lua_pop(L, 1);
                 /* force a complete garbage collection in case of errors */

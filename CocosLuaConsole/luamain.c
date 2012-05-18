@@ -184,7 +184,7 @@ static int pushline (lua_State *L, int firstline) {
 
 
 static int loadline (lua_State *L) {
-    int status;
+    int status = 0;
     lua_settop(L, 0);
     if (!pushline(L, 1)) {
         if (remote_enabled) {

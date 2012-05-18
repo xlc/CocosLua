@@ -223,7 +223,7 @@ static void TCPServerAcceptCallBack(CFSocketRef socket, CFSocketCallBackType typ
 		return NO;
 	
 
-	self.netService = [[NSNetService alloc] initWithDomain:domain type:protocol name:name port:self.port];
+	self.netService = [[[NSNetService alloc] initWithDomain:domain type:protocol name:name port:self.port] autorelease];
 	if(self.netService == nil)
 		return NO;
 	
