@@ -153,6 +153,18 @@ static LuaConsole *sharedConsole;
     [self appendMessage:buff];
 }
 
+- (void)handleInputString:(NSString *)string {
+    [self appendPromptWithFirstLine:YES];   // TODO append before user remain input
+    [_text appendString:string];
+    NSError *error;
+    NSArray *result = [[LuaExecutor sharedExecutor] executeString:string error:&error];
+    if (error)
+        [self appendError:error];
+    else
+        [self appendArray:result];
+    
+}
+
 #pragma mark - Keyboard Notification
 
 - (void)keyboardDidShow:(NSNotification *)notification {
@@ -160,14 +172,16 @@ static LuaConsole *sharedConsole;
     CGRect kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     UIWindow *window = [[UIApplication sharedApplication].windows objectAtIndex:0];
     CGSize kbSize = [window convertRect:kbRect toView:self].size;
-    CGRect frame = _textView.frame;
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    CGRect frame = CGRectZero;
+    frame.size = size;
     frame.size.height -= kbSize.height;
     _textView.frame = frame;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     CGSize size = [[CCDirector sharedDirector] winSize];
-    CGRect frame = _textView.frame;
+    CGRect frame = CGRectZero;
     frame.size = size;
     _textView.frame = frame;
 }

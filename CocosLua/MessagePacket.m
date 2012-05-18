@@ -8,13 +8,14 @@
 
 #import "MessagePacket.h"
 
-#import "LuaConsole.h"
-#import "LuaExecutor.h"
-
 @implementation MessagePacket
 
 @synthesize type = _type;
 @synthesize content = _content;
+
++ (id)packetWithType:(MessageType)type content:(id)content {
+    return [[[self alloc] initWithType:type content:content] autorelease];
+}
 
 - (id)initWithType:(MessageType)type content:(id)content;
 {
@@ -48,28 +49,6 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeInt:_type forKey:@"type"];
     [aCoder encodeObject:_content forKey:@"content"];
-}
-
-#pragma mark -
-
-- (void)execute {
-    switch (_type) {
-        case MessageTypeNone:
-            break;
-        case MessageTypeString: // execute it and print result/error to console
-        {
-            NSError *error;
-            NSArray *result = [[LuaExecutor sharedExecutor] executeString:_content error:&error];
-            if (error)
-                [[LuaConsole sharedConsole] appendError:error];
-            else
-                [[LuaConsole sharedConsole] appendArray:result];
-        }
-            break;
-            
-        case MessageTypeFile:   // TODO save file then execute it
-            break;
-    }
 }
 
 @end

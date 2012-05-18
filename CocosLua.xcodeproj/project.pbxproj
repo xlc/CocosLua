@@ -12,6 +12,8 @@
 		065C992A156510540088C945 /* MessagePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C9929156510540088C945 /* MessagePacket.m */; };
 		066955CF1566164D00D7B646 /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066955611566161200D7B646 /* libcocos2d.a */; };
 		066955D015662D3C00D7B646 /* MLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = 06834AE6155FB30B001A1F44 /* MLogger.c */; };
+		066955D3156645D700D7B646 /* LuaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 066955D2156645D700D7B646 /* LuaClient.m */; };
+		066955D4156649A400D7B646 /* MessagePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C9929156510540088C945 /* MessagePacket.m */; };
 		06834A6C155FAD2F001A1F44 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 069D853B155F63610074CEF2 /* libxml2.dylib */; };
 		06834A6E155FAD36001A1F44 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 06834A6D155FAD36001A1F44 /* libsqlite3.dylib */; };
 		06834AE7155FB30B001A1F44 /* MLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = 06834AE6155FB30B001A1F44 /* MLogger.c */; };
@@ -648,6 +650,8 @@
 		065C99221564EE940088C945 /* TCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPServer.m; sourceTree = "<group>"; };
 		065C9928156510540088C945 /* MessagePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePacket.h; sourceTree = "<group>"; };
 		065C9929156510540088C945 /* MessagePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePacket.m; sourceTree = "<group>"; };
+		066955D1156645D600D7B646 /* LuaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaClient.h; sourceTree = "<group>"; };
+		066955D2156645D700D7B646 /* LuaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaClient.m; sourceTree = "<group>"; };
 		06834A6D155FAD36001A1F44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		06834AE5155FB30B001A1F44 /* MLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLogger.h; sourceTree = "<group>"; };
 		06834AE6155FB30B001A1F44 /* MLogger.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MLogger.c; sourceTree = "<group>"; };
@@ -1321,6 +1325,8 @@
 				0BE0930C15659E5B00820377 /* main.m */,
 				0BE093671565ED5400820377 /* browser.h */,
 				0BE093681565ED5400820377 /* browser.m */,
+				066955D1156645D600D7B646 /* LuaClient.h */,
+				066955D2156645D700D7B646 /* LuaClient.m */,
 				0BE093631565A90600820377 /* luamain.h */,
 				0BE093601565A7FC00820377 /* luamain.c */,
 				0BE093641565B70400820377 /* BonjourBrowser.h */,
@@ -2059,6 +2065,8 @@
 				0BE0930D15659E5B00820377 /* main.m in Sources */,
 				0BE093661565B70400820377 /* BonjourBrowser.m in Sources */,
 				0BE093691565ED5400820377 /* browser.m in Sources */,
+				066955D4156649A400D7B646 /* MessagePacket.m in Sources */,
+				066955D3156645D700D7B646 /* LuaClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,8 @@
 
 #import "TCPServer.h"
 #import "MessagePacket.h"
+#import "LuaExecutor.h"
+#import "LuaConsole.h"
 
 static LuaServer *sharedServer;
 
@@ -50,6 +52,8 @@ static LuaServer *sharedServer;
 
 - (void)dealloc
 {
+    [self.inputStream close];
+    [self.outputStream close];
     self.inputStream = nil;
     self.outputStream = nil;
     [_server stop];
@@ -89,7 +93,19 @@ static LuaServer *sharedServer;
     if (!message) {
         MWLOG(@"Fail to decode data: %@", data);
     }
-    [message execute];
+    
+    // execute message
+    switch (message.type) {
+        case MessageTypeNone:
+            break;
+        case MessageTypeString: // execute it and print result/error to console
+            [[LuaConsole sharedConsole] handleInputString:message.content];
+            break;
+            
+        case MessageTypeFile:   // TODO save file then execute it
+            break;
+    }
+
 }
 
 #pragma mark - NSStreamDelegate
@@ -125,7 +141,6 @@ static LuaServer *sharedServer;
             }
             break;
         default:
-            MILOG(@"%@: unhandled event %d", aStream, eventCode);
             break;
     }
 }
@@ -142,6 +157,10 @@ static LuaServer *sharedServer;
 
 - (void) didAcceptConnectionForServer:(TCPServer*)server inputStream:(NSInputStream *)istr outputStream:(NSOutputStream *)ostr {
     MDLOG(@"start connection");
+    [istr open];
+    [ostr open];
+    [istr scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    [ostr scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
     self.inputStream = istr;
     self.outputStream = ostr;
     self.inputStream.delegate = self;

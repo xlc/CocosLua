@@ -20,7 +20,6 @@ typedef enum MessageType {
 @property (nonatomic, readonly) id content;
 
 - (id)initWithType:(MessageType)type content:(id)content;
-
-- (void)execute;
++ (id)packetWithType:(MessageType)type content:(id)content;
 
 @end

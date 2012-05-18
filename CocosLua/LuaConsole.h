@@ -19,4 +19,6 @@
 - (void)appendError:(NSError *)error;
 - (void)appendArray:(NSArray *)array;
 
+- (void)handleInputString:(NSString *)string;
+
 @end

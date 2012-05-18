@@ -9,10 +9,41 @@
 #include "browser.h"
 
 #include "lauxlib.h"
+#include "luamain.h"
 
 #import "BonjourBrowser.h"
+#import "LuaClient.h"
+#import "MessagePacket.h"
 
 static BonjourBrowser *browser;
+static LuaClient *client;
+
+static void send_string(const char *str) {
+    if (client.connected) {
+        [client sendPacket:[MessagePacket packetWithType:MessageTypeString content:[NSString stringWithUTF8String:str]]];
+    } else {
+        stop_remote("disconnected from server");
+    }
+}
+
+static void close_connection(const char *reason) {
+    [client close];
+    [client release];
+    client = nil;
+}
+
+static BOOL createClient(void) {
+    if (client.connected) {
+        return YES;
+    }
+    [client release];
+    client = [[LuaClient alloc] initWithNetService:browser.server];
+    if (!client) {
+        return NO;
+    }
+    start_remote(send_string, close_connection);
+    return YES;
+}
 
 static int start(lua_State *L) {
     if (!browser) {
@@ -24,6 +55,7 @@ static int start(lua_State *L) {
 
 static int stop(lua_State *L) {
     [browser stop];
+    stop_remote("received stop message");
     return 0;
 }
 
@@ -37,10 +69,11 @@ static int connect(lua_State *L) {
     } else {
         done = [browser wait];
     }
-    if (done)
+    if (done && createClient()) {
         lua_pushboolean(L, 1);
-    else
+    } else {
         lua_pushboolean(L, 0);
+    }
     return 1;
 }
 
@@ -48,10 +81,11 @@ static int tryconnect(lua_State *L) {
     if (!browser) {
         start(L);
     }
-    if (browser.server)
+    if (browser.server && createClient()) {
         lua_pushboolean(L, 1);
-    else
+    } else {
         lua_pushboolean(L, 0);
+    }
     return 1;
 }
 

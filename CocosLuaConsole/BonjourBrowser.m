@@ -141,7 +141,7 @@
 }
 
 - (void)netService:(NSNetService *)sender didNotResolve:(NSDictionary *)errorDict {
-    MILOG(@"");
+    MILOG(@"%@", errorDict);
     self.errorDict = errorDict;
     [self restart];
 }
