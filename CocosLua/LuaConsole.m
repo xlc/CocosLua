@@ -154,14 +154,28 @@ static LuaConsole *sharedConsole;
 }
 
 - (void)handleInputString:(NSString *)string {
-    [self appendPromptWithFirstLine:YES];   // TODO append before user remain input
+
     [_text appendString:string];
-    NSError *error;
-    NSArray *result = [[LuaExecutor sharedExecutor] executeString:string error:&error];
-    if (error)
+    
+    BOOL completed;
+    LuaExecutor *executor = [LuaExecutor sharedExecutor];
+    [_buffer appendString:string];
+    [_buffer appendString:@"\n"];   // add new line
+    NSError *error = [executor checkString:_buffer completed:&completed];
+    if (error) {
         [self appendError:error];
-    else
-        [self appendArray:result];
+        [_buffer setString:@""];    // clear buffer
+    } else if (completed) {
+        NSArray *result = [executor executeString:_buffer error:&error];
+        if (error) {
+            [self appendError:error];
+        } else {
+            [self appendArray:result];
+        }
+        [_buffer setString:@""];    // clear buffer
+    }
+    
+    [self appendPromptWithFirstLine:completed];
     
 }
 

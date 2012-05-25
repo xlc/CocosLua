@@ -29,6 +29,7 @@ static LuaServer *sharedServer;
 }
 
 @synthesize started = _started;
+@synthesize connected = _connected;
 @synthesize inputStream = _inputStream;
 @synthesize outputStream = _outputStream;
 
@@ -68,6 +69,7 @@ static LuaServer *sharedServer;
     if (_started) {
         return YES;
     }
+    _connected = NO;
     NSError *error;
     if (![_server start:&error]) {
         MWLOG(@"Failed to start TCP server with error: %@", error);
@@ -86,12 +88,16 @@ static LuaServer *sharedServer;
         return;
     }
     [_server stop];
+    _connected = NO;
 }
+
+#pragma mark -
 
 - (void)handleData:(NSData *)data {
     MessagePacket *message = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     if (!message) {
         MWLOG(@"Fail to decode data: %@", data);
+        return;
     }
     
     // execute message
@@ -117,9 +123,11 @@ static LuaServer *sharedServer;
             break;
         case NSStreamEventEndEncountered:
             MDLOG(@"%@: connection did end", aStream);
+            _connected = NO;
             break;
         case NSStreamEventErrorOccurred:
             MILOG(@"%@: connection error: %@", aStream, [aStream streamError]);
+            _connected = NO;
             break;
         case NSStreamEventHasBytesAvailable:
             if (aStream == _inputStream) {
@@ -165,6 +173,7 @@ static LuaServer *sharedServer;
     self.outputStream = ostr;
     self.inputStream.delegate = self;
     self.outputStream.delegate = self;
+    _connected = YES;
 }
 
 @end

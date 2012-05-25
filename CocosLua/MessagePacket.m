@@ -51,4 +51,10 @@
     [aCoder encodeObject:_content forKey:@"content"];
 }
 
+#pragma mark -
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@: %d - %@", [super description], _type, _content];
+}
+
 @end

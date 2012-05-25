@@ -248,6 +248,10 @@ static int pmain (lua_State *L) {
     luaL_openlibs(L);  /* open libraries */
     
     luaL_requiref(L, "browser", luaopen_browser, 1);    // load modules
+    lua_getglobal(L, "browser");
+    lua_getfield(L, -1, "connect");
+    lua_setglobal(L, "connect");
+    lua_pop(L, 1);
     
     lua_gc(L, LUA_GCRESTART, 0);
     dotty(L);
