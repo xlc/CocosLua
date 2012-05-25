@@ -10,10 +10,14 @@
 
 @interface LuaConsole : UIView
 
-@property (nonatomic, readonly) UITextView *textView;
+@property (nonatomic, retain, readonly) UITextView *textView;
 @property (nonatomic) BOOL visible;
+@property (nonatomic) BOOL fullScreen;
 
 + (LuaConsole *)sharedConsole;
+
+- (void)toggleVisible;
+- (void)toggleFullScreen;
 
 - (void)appendMessage:(NSString *)msg;
 - (void)appendError:(NSError *)error;
