@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class HighlightingTextView;
+
 @interface LuaConsole : UIView
 
-@property (nonatomic, retain, readonly) UITextView *textView;
+@property (nonatomic, retain, readonly) HighlightingTextView *textView;
 @property (nonatomic) BOOL visible;
 @property (nonatomic) BOOL fullScreen;
 

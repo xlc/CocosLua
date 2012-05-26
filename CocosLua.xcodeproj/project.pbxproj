@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060A27D215705B6200EA297B /* AttributedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 060A27CE15705B6200EA297B /* AttributedTextView.m */; };
+		060A27D315705B6200EA297B /* HighlightingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 060A27D015705B6200EA297B /* HighlightingTextView.m */; };
+		060A27D615705B6A00EA297B /* LuaSyntaxHighligther.m in Sources */ = {isa = PBXBuildFile; fileRef = 060A27D515705B6A00EA297B /* LuaSyntaxHighligther.m */; };
+		060A27D815705B9000EA297B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060A27D715705B9000EA297B /* CoreText.framework */; };
 		065C99201564EE650088C945 /* LuaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C991F1564EE650088C945 /* LuaServer.m */; };
 		065C99231564EE940088C945 /* TCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C99221564EE940088C945 /* TCPServer.m */; };
 		065C992A156510540088C945 /* MessagePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C9929156510540088C945 /* MessagePacket.m */; };
@@ -644,6 +648,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		060A27CD15705B6200EA297B /* AttributedTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedTextView.h; sourceTree = "<group>"; };
+		060A27CE15705B6200EA297B /* AttributedTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedTextView.m; sourceTree = "<group>"; };
+		060A27CF15705B6200EA297B /* HighlightingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighlightingTextView.h; sourceTree = "<group>"; };
+		060A27D015705B6200EA297B /* HighlightingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightingTextView.m; sourceTree = "<group>"; };
+		060A27D115705B6200EA297B /* SyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlighter.h; sourceTree = "<group>"; };
+		060A27D415705B6A00EA297B /* LuaSyntaxHighligther.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaSyntaxHighligther.h; sourceTree = "<group>"; };
+		060A27D515705B6A00EA297B /* LuaSyntaxHighligther.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaSyntaxHighligther.m; sourceTree = "<group>"; };
+		060A27D715705B9000EA297B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		065C991E1564EE650088C945 /* LuaServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaServer.h; sourceTree = "<group>"; };
 		065C991F1564EE650088C945 /* LuaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaServer.m; sourceTree = "<group>"; };
 		065C99211564EE940088C945 /* TCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPServer.h; sourceTree = "<group>"; };
@@ -846,6 +858,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				060A27D815705B9000EA297B /* CoreText.framework in Frameworks */,
 				066955CF1566164D00D7B646 /* libcocos2d.a in Frameworks */,
 				06834A6E155FAD36001A1F44 /* libsqlite3.dylib in Frameworks */,
 				06834A6C155FAD2F001A1F44 /* libxml2.dylib in Frameworks */,
@@ -879,6 +892,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		060A27CC15705B3800EA297B /* SyntaxHighlight */ = {
+			isa = PBXGroup;
+			children = (
+				060A27CD15705B6200EA297B /* AttributedTextView.h */,
+				060A27CE15705B6200EA297B /* AttributedTextView.m */,
+				060A27CF15705B6200EA297B /* HighlightingTextView.h */,
+				060A27D015705B6200EA297B /* HighlightingTextView.m */,
+				060A27D115705B6200EA297B /* SyntaxHighlighter.h */,
+				060A27D415705B6A00EA297B /* LuaSyntaxHighligther.h */,
+				060A27D515705B6A00EA297B /* LuaSyntaxHighligther.m */,
+			);
+			name = SyntaxHighlight;
+			sourceTree = "<group>";
+		};
 		065C991D1564EE4B0088C945 /* LuaServer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1110,6 +1137,7 @@
 			children = (
 				06834DCE15623369001A1F44 /* LuaConsole.h */,
 				06834DCF15623369001A1F44 /* LuaConsole.m */,
+				060A27CC15705B3800EA297B /* SyntaxHighlight */,
 			);
 			name = LuaConsole;
 			sourceTree = "<group>";
@@ -1285,6 +1313,7 @@
 		06CD5B6A155E85FF005206AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				060A27D715705B9000EA297B /* CoreText.framework */,
 				0BE0935E1565A5F000820377 /* libreadline.dylib */,
 				06834A6D155FAD36001A1F44 /* libsqlite3.dylib */,
 				069D85A9155F89C40074CEF2 /* libz.dylib */,
@@ -2053,6 +2082,9 @@
 				065C99201564EE650088C945 /* LuaServer.m in Sources */,
 				065C99231564EE940088C945 /* TCPServer.m in Sources */,
 				065C992A156510540088C945 /* MessagePacket.m in Sources */,
+				060A27D215705B6200EA297B /* AttributedTextView.m in Sources */,
+				060A27D315705B6200EA297B /* HighlightingTextView.m in Sources */,
+				060A27D615705B6A00EA297B /* LuaSyntaxHighligther.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

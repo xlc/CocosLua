@@ -9,14 +9,14 @@
 #import "LuaConsole.h"
 
 #import "LuaExecutor.h"
-
-#import <UIKit/UIGestureRecognizerSubclass.h>
+#import "HighlightingTextView.h"
+#import "LuaSyntaxHighligther.h"
 
 static LuaConsole *sharedConsole;
 
 @interface LuaConsole () <UITextViewDelegate>
 
-@property (nonatomic, retain) UITextView *textView;
+@property (nonatomic, retain) HighlightingTextView *textView;
 @property (nonatomic, retain) UILabel *titleView;
 
 - (void)appendPromptWithFirstLine:(BOOL)firstline;
@@ -81,11 +81,15 @@ static LuaConsole *sharedConsole;
         [panRecognizer release];
         [self addSubview:_titleView];
         
-        _textView = [[UITextView alloc] initWithFrame:CGRectZero];
+        _textView = [[HighlightingTextView alloc] initWithFrame:CGRectZero];
         _textView.editable = YES;
         _textView.delegate = self;
         _textView.autoresizingMask = UITextAutocorrectionTypeNo;
         _textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        LuaSyntaxHighligther *highlighter = [[[LuaSyntaxHighligther alloc] init] autorelease];
+        highlighter.commandLineMode = YES;
+        _textView.syntaxHighlighter = highlighter;
+        _textView.font = [UIFont fontWithName:@"Courier New" size:16];  // TODO only works with this font size
         [self addSubview:_textView];
         
         _resizerView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -245,7 +249,7 @@ static LuaConsole *sharedConsole;
     if (firstline)
         [_text appendString:@"> "];
     else
-        [_text appendString:@">>   "];
+        [_text appendString:@">>  "];
     _lastPosition = [_text length];
     _textView.text = _text;
 }
@@ -339,9 +343,12 @@ static LuaConsole *sharedConsole;
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     _changeContainNewLine = NO;
     if (range.location < _lastPosition) { // not able to modify fixed text
-        [textView setSelectedRange:NSMakeRange(_lastPosition, 0)];
-        [_text appendString:text];
-        _textView.text = _text;
+        if ([text isEqualToString:@"\n"]) {
+            [_textView setSelectedRange:NSMakeRange(_text.length, 0)];
+        } else {
+            [_text appendString:text];
+            _textView.text = _text;
+        }
         return NO;
     }
     if ([text isEqualToString:@"\n"] && range.location != [_text length]) {
