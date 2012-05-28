@@ -14,6 +14,13 @@
 		065C99201564EE650088C945 /* LuaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C991F1564EE650088C945 /* LuaServer.m */; };
 		065C99231564EE940088C945 /* TCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C99221564EE940088C945 /* TCPServer.m */; };
 		065C992A156510540088C945 /* MessagePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C9929156510540088C945 /* MessagePacket.m */; };
+		0667A0231571FC08007BF5FF /* SCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0667A01F1571FC08007BF5FF /* SCEvent.m */; };
+		0667A0241571FC08007BF5FF /* SCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 0667A0221571FC08007BF5FF /* SCEvents.m */; };
+		0667A0281571FD35007BF5FF /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0667A0271571FD35007BF5FF /* FileManager.m */; };
+		0667A02A1571FF42007BF5FF /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0667A0291571FF42007BF5FF /* CoreServices.framework */; };
+		0667A03415720167007BF5FF /* filesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0667A03315720167007BF5FF /* filesystem.m */; };
+		0667A04D15739012007BF5FF /* cocos2d in Resources */ = {isa = PBXBuildFile; fileRef = 0667A04B15739012007BF5FF /* cocos2d */; };
+		0667A04E15739012007BF5FF /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 0667A04C15739012007BF5FF /* init.lua */; };
 		066955CF1566164D00D7B646 /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066955611566161200D7B646 /* libcocos2d.a */; };
 		066955D015662D3C00D7B646 /* MLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = 06834AE6155FB30B001A1F44 /* MLogger.c */; };
 		066955D3156645D700D7B646 /* LuaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 066955D2156645D700D7B646 /* LuaClient.m */; };
@@ -192,7 +199,7 @@
 		0BE093591565A20100820377 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 069D8340155F606B0074CEF2 /* lzio.c */; };
 		0BE0935B1565A23A00820377 /* libLua-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE0931C1565A19600820377 /* libLua-mac.a */; };
 		0BE0935F1565A5F000820377 /* libreadline.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BE0935E1565A5F000820377 /* libreadline.dylib */; };
-		0BE093621565A87900820377 /* luamain.c in Sources */ = {isa = PBXBuildFile; fileRef = 0BE093601565A7FC00820377 /* luamain.c */; };
+		0BE093621565A87900820377 /* luamain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE093601565A7FC00820377 /* luamain.m */; };
 		0BE093661565B70400820377 /* BonjourBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE093651565B70400820377 /* BonjourBrowser.m */; };
 		0BE093691565ED5400820377 /* browser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE093681565ED5400820377 /* browser.m */; };
 		0BE574F61561B50300B858BE /* wax in Resources */ = {isa = PBXBuildFile; fileRef = 0BE574F51561B50300B858BE /* wax */; };
@@ -662,6 +669,19 @@
 		065C99221564EE940088C945 /* TCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPServer.m; sourceTree = "<group>"; };
 		065C9928156510540088C945 /* MessagePacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePacket.h; sourceTree = "<group>"; };
 		065C9929156510540088C945 /* MessagePacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePacket.m; sourceTree = "<group>"; };
+		0667A01D1571FC08007BF5FF /* SCConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCConstants.h; sourceTree = "<group>"; };
+		0667A01E1571FC08007BF5FF /* SCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCEvent.h; sourceTree = "<group>"; };
+		0667A01F1571FC08007BF5FF /* SCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCEvent.m; sourceTree = "<group>"; };
+		0667A0201571FC08007BF5FF /* SCEventListenerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCEventListenerProtocol.h; sourceTree = "<group>"; };
+		0667A0211571FC08007BF5FF /* SCEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCEvents.h; sourceTree = "<group>"; };
+		0667A0221571FC08007BF5FF /* SCEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCEvents.m; sourceTree = "<group>"; };
+		0667A0261571FD35007BF5FF /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		0667A0271571FD35007BF5FF /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		0667A0291571FF42007BF5FF /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		0667A03215720167007BF5FF /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
+		0667A03315720167007BF5FF /* filesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = filesystem.m; sourceTree = "<group>"; };
+		0667A04B15739012007BF5FF /* cocos2d */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cocos2d; sourceTree = "<group>"; };
+		0667A04C15739012007BF5FF /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
 		066955D1156645D600D7B646 /* LuaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaClient.h; sourceTree = "<group>"; };
 		066955D2156645D700D7B646 /* LuaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaClient.m; sourceTree = "<group>"; };
 		06834A6D155FAD36001A1F44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -825,7 +845,7 @@
 		0BE0930F15659E5B00820377 /* CocosLuaConsole-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocosLuaConsole-Prefix.pch"; sourceTree = "<group>"; };
 		0BE0931C1565A19600820377 /* libLua-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libLua-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE0935E1565A5F000820377 /* libreadline.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libreadline.dylib; path = SDKs/MacOSX10.7.sdk/usr/lib/libreadline.dylib; sourceTree = DEVELOPER_DIR; };
-		0BE093601565A7FC00820377 /* luamain.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luamain.c; sourceTree = "<group>"; };
+		0BE093601565A7FC00820377 /* luamain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = luamain.m; sourceTree = "<group>"; };
 		0BE093631565A90600820377 /* luamain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luamain.h; sourceTree = "<group>"; };
 		0BE093641565B70400820377 /* BonjourBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourBrowser.h; sourceTree = "<group>"; };
 		0BE093651565B70400820377 /* BonjourBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonjourBrowser.m; sourceTree = "<group>"; };
@@ -876,6 +896,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0667A02A1571FF42007BF5FF /* CoreServices.framework in Frameworks */,
 				0BE0935F1565A5F000820377 /* libreadline.dylib in Frameworks */,
 				0BE0935B1565A23A00820377 /* libLua-mac.a in Frameworks */,
 				0BE0930A15659E5B00820377 /* Foundation.framework in Frameworks */,
@@ -915,6 +936,42 @@
 				065C9929156510540088C945 /* MessagePacket.m */,
 			);
 			name = LuaServer;
+			sourceTree = "<group>";
+		};
+		0667A0251571FC0B007BF5FF /* SCEvents */ = {
+			isa = PBXGroup;
+			children = (
+				0667A01D1571FC08007BF5FF /* SCConstants.h */,
+				0667A01E1571FC08007BF5FF /* SCEvent.h */,
+				0667A01F1571FC08007BF5FF /* SCEvent.m */,
+				0667A0201571FC08007BF5FF /* SCEventListenerProtocol.h */,
+				0667A0211571FC08007BF5FF /* SCEvents.h */,
+				0667A0221571FC08007BF5FF /* SCEvents.m */,
+			);
+			name = SCEvents;
+			sourceTree = "<group>";
+		};
+		0667A02B1571FFCA007BF5FF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				066955D1156645D600D7B646 /* LuaClient.h */,
+				066955D2156645D700D7B646 /* LuaClient.m */,
+				0BE093641565B70400820377 /* BonjourBrowser.h */,
+				0BE093651565B70400820377 /* BonjourBrowser.m */,
+				0667A0261571FD35007BF5FF /* FileManager.h */,
+				0667A0271571FD35007BF5FF /* FileManager.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		0667A03E15738F09007BF5FF /* lua scripts */ = {
+			isa = PBXGroup;
+			children = (
+				0667A04B15739012007BF5FF /* cocos2d */,
+				0667A04C15739012007BF5FF /* init.lua */,
+				069D85AD155F8A1B0074CEF2 /* Scripts */,
+			);
+			name = "lua scripts";
 			sourceTree = "<group>";
 		};
 		0669551F1566161200D7B646 /* Products */ = {
@@ -1313,6 +1370,7 @@
 		06CD5B6A155E85FF005206AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0667A0291571FF42007BF5FF /* CoreServices.framework */,
 				060A27D715705B9000EA297B /* CoreText.framework */,
 				0BE0935E1565A5F000820377 /* libreadline.dylib */,
 				06834A6D155FAD36001A1F44 /* libsqlite3.dylib */,
@@ -1330,7 +1388,7 @@
 		06CD5B71155E85FF005206AA /* CocosLua */ = {
 			isa = PBXGroup;
 			children = (
-				069D85AD155F8A1B0074CEF2 /* Scripts */,
+				0667A03E15738F09007BF5FF /* lua scripts */,
 				069D85AB155F89EE0074CEF2 /* Classes */,
 				06CD5B72155E85FF005206AA /* Supporting Files */,
 			);
@@ -1354,12 +1412,12 @@
 				0BE0930C15659E5B00820377 /* main.m */,
 				0BE093671565ED5400820377 /* browser.h */,
 				0BE093681565ED5400820377 /* browser.m */,
-				066955D1156645D600D7B646 /* LuaClient.h */,
-				066955D2156645D700D7B646 /* LuaClient.m */,
+				0667A03215720167007BF5FF /* filesystem.h */,
+				0667A03315720167007BF5FF /* filesystem.m */,
 				0BE093631565A90600820377 /* luamain.h */,
-				0BE093601565A7FC00820377 /* luamain.c */,
-				0BE093641565B70400820377 /* BonjourBrowser.h */,
-				0BE093651565B70400820377 /* BonjourBrowser.m */,
+				0BE093601565A7FC00820377 /* luamain.m */,
+				0667A02B1571FFCA007BF5FF /* Classes */,
+				0667A0251571FC0B007BF5FF /* SCEvents */,
 				0BE0930E15659E5B00820377 /* Supporting Files */,
 			);
 			path = CocosLuaConsole;
@@ -1997,6 +2055,8 @@
 				069D859B155F80FF0074CEF2 /* Icon@2x.png in Resources */,
 				069D859C155F80FF0074CEF2 /* iTunesArtwork in Resources */,
 				069D85AE155F8A1B0074CEF2 /* Scripts in Resources */,
+				0667A04D15739012007BF5FF /* cocos2d in Resources */,
+				0667A04E15739012007BF5FF /* init.lua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2093,12 +2153,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				066955D015662D3C00D7B646 /* MLogger.c in Sources */,
-				0BE093621565A87900820377 /* luamain.c in Sources */,
+				0BE093621565A87900820377 /* luamain.m in Sources */,
 				0BE0930D15659E5B00820377 /* main.m in Sources */,
 				0BE093661565B70400820377 /* BonjourBrowser.m in Sources */,
 				0BE093691565ED5400820377 /* browser.m in Sources */,
 				066955D4156649A400D7B646 /* MessagePacket.m in Sources */,
 				066955D3156645D700D7B646 /* LuaClient.m in Sources */,
+				0667A0231571FC08007BF5FF /* SCEvent.m in Sources */,
+				0667A0241571FC08007BF5FF /* SCEvents.m in Sources */,
+				0667A0281571FD35007BF5FF /* FileManager.m in Sources */,
+				0667A03415720167007BF5FF /* filesystem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

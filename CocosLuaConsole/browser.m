@@ -27,6 +27,7 @@ static void send_string(const char *str) {
 }
 
 static void close_connection(const char *reason) {
+    NSLog(@"Connection closed: %s", reason);
     [client close];
     [client release];
     client = nil;
@@ -55,7 +56,7 @@ static int start(lua_State *L) {
 
 static int stop(lua_State *L) {
     [browser stop];
-    stop_remote("received stop message");
+    stop_remote("stop by user");
     return 0;
 }
 
@@ -113,4 +114,8 @@ static const luaL_Reg methods[] = {
 int luaopen_browser(lua_State *L) {
     luaL_newlib(L, methods);
     return 1;
+}
+
+LuaClient *get_client() {
+    return client;
 }
