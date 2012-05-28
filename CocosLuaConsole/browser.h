@@ -8,4 +8,8 @@
 
 #include "lua.h"
 
+@class LuaClient;
+
 int luaopen_browser(lua_State *L);
+
+LuaClient *get_client(void);

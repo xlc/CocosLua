@@ -25,6 +25,7 @@
 #include "lualib.h"
 
 #include "browser.h"
+#include "filesystem.h"
 
 #define LUA_PROMPT		"> "
 #define LUA_PROMPT2		">> "
@@ -252,6 +253,10 @@ static int pmain (lua_State *L) {
     lua_getfield(L, -1, "connect");
     lua_setglobal(L, "connect");
     lua_pop(L, 1);
+    
+    luaL_requiref(L, "filesystem", luaopen_filesystem, 1);    // load modules
+    lua_getglobal(L, "filesystem");
+    lua_setglobal(L, "fs");
     
     lua_gc(L, LUA_GCRESTART, 0);
     dotty(L);

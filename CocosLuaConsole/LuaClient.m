@@ -9,6 +9,7 @@
 #import "LuaClient.h"
 
 #import "MessagePacket.h"
+#import "FileManager.h"
 
 @interface LuaClient () <NSStreamDelegate>
 
@@ -41,6 +42,8 @@
         [_inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         [_outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         _connected = YES;
+        
+        [[FileManager sharedManager] start:self];
     }
     return self;
 }
@@ -62,6 +65,9 @@
 }
 
 - (void)sendPacket:(MessagePacket *)packet {
+    if (!_connected) {
+        return;
+    }
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:packet];
     const uint8_t *buff = [data bytes];
     NSUInteger length = [data length];
@@ -79,12 +85,14 @@
 }
 
 - (void)close {
+    [[FileManager sharedManager] stop];
     [_inputStream close];
     [_inputStream release];
     _inputStream = nil;
     [_outputStream close];
     [_outputStream release];
     _outputStream = nil;
+    _connected = NO;
 }
 
 #pragma mark - NSStreamDelegate

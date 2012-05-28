@@ -88,7 +88,9 @@
     
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
 //    [director_ pushScene:[NSClassFromString(@"LuaScene") node]];
-    [[LuaExecutor sharedExecutor] executeFile:@"main"];
+    [[LuaExecutor sharedExecutor] executeFile:@"main"]; // load main file
+    NSError *error = [[LuaExecutor sharedExecutor] executeString:@"main()"];    // run main function
+    [[LuaConsole sharedConsole] appendError:error];
     [[LuaConsole sharedConsole] setVisible:YES];
     
 	return YES;

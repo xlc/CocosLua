@@ -11,7 +11,7 @@
 typedef enum MessageType {
     MessageTypeNone = 0,
     MessageTypeString,
-    MessageTypeFile,
+    MessageTypeFile,    // array of file array: filecontent, filename, modified date
 } MessageType;
 
 @interface MessagePacket : NSObject <NSCoding>

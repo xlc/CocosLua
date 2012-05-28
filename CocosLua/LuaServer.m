@@ -108,7 +108,23 @@ static LuaServer *sharedServer;
             [[LuaConsole sharedConsole] handleInputString:message.content];
             break;
             
-        case MessageTypeFile:   // TODO save file then execute it
+        case MessageTypeFile:   // save and load scripts TODO detect conflict
+        {
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSArray *files = message.content;
+            NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+            for (NSArray *file in files) {
+                NSData *content = [file objectAtIndex:0];
+                NSString *path = [file objectAtIndex:1];
+                NSDictionary *attr = [NSDictionary dictionaryWithObject:[file objectAtIndex:2] forKey:NSFileModificationDate];
+                [fileManager createFileAtPath:[documentPath stringByAppendingPathComponent:path] contents:content attributes:attr];
+            }
+            LuaExecutor *executor = [LuaExecutor sharedExecutor];
+            for (NSArray *file in files) {
+                NSString *script = [[NSString alloc] initWithData:[file objectAtIndex:0] encoding:NSUTF8StringEncoding];
+                [executor executeString:script];    // ignore error
+            }
+        }   
             break;
     }
 
