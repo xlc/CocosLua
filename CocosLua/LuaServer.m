@@ -122,7 +122,10 @@ static LuaServer *sharedServer;
             LuaExecutor *executor = [LuaExecutor sharedExecutor];
             for (NSArray *file in files) {
                 NSString *script = [[NSString alloc] initWithData:[file objectAtIndex:0] encoding:NSUTF8StringEncoding];
-                [executor executeString:script];    // ignore error
+                NSError *error = [executor executeString:script];    // ignore error
+                if (error) {
+                    MILOG(@"fail to load remote files with error: %@", error);
+                }
             }
         }   
             break;
