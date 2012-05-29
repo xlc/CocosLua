@@ -4,8 +4,6 @@ require "wax.helpers.frame"
 require "wax.helpers.base64"
 require "wax.helpers.time"
 require "wax.helpers.cache"
-require "wax.helpers.autoload"
-require "wax.helpers.WaxServer"
 
 -- Just a bunch of global helper functions
 
