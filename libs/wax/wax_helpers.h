@@ -87,6 +87,8 @@ void wax_fromStruct(lua_State *L, const char *typeDescription, void *buffer);
     
 void *wax_copyToObjc(lua_State *L, const char *typeDescription, int stackIndex, int *outsize);
 
+id wax_getObject(lua_State *L, int stackIndex);
+
 // Misc Helpers
 void wax_selectorsForName(const char *methodName, SEL selectors[2]);
 BOOL wax_selectorForInstance(wax_instance_userdata *instanceUserdata, SEL* foundSelectors, const char *methodName, BOOL forceInstanceCheck);

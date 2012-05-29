@@ -13,9 +13,12 @@
 
 #import "lua.h"
 
+#import "wax_userdata_info.h"
+
 #define WAX_INSTANCE_METATABLE_NAME "wax.instance"
 
 typedef struct _wax_instance_userdata {
+    wax_userdata_info info;
     id instance;
     BOOL isClass;
     Class isSuper; // isSuper not only stores whether the class is a super, but it also contains the value of the next superClass.

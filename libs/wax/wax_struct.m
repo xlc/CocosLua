@@ -64,7 +64,8 @@ wax_struct_userdata *wax_struct_create(lua_State *L, const char *typeDescription
     
     size_t nbytes = sizeof(wax_struct_userdata);
     wax_struct_userdata *structUserdata = (wax_struct_userdata *)lua_newuserdata(L, nbytes);
-
+    structUserdata->info.type = wax_struct_type;
+    
     int size = wax_sizeOfTypeDescription(typeDescription);
     structUserdata->data = malloc(size);
     memcpy(structUserdata->data, buffer, size);

@@ -571,6 +571,22 @@ void *wax_copyToObjc(lua_State *L, const char *typeDescription, int stackIndex, 
     return value;
 }
 
+id wax_getObject(lua_State *L, int stackIndex) {
+    id instance = nil;
+    if (lua_isuserdata(L, stackIndex)) {
+        wax_userdata_info *data = lua_touserdata(L, stackIndex);
+        if (data->type == wax_struct_type) {
+            wax_struct_userdata *structUserdata = (wax_struct_userdata *)luaL_checkudata(L, stackIndex, WAX_STRUCT_METATABLE_NAME);
+            return [NSValue valueWithBytes:structUserdata->data objCType:structUserdata->typeDescription];
+        }
+        // assume is instance type
+    }
+    id *instancePointer = wax_copyToObjc(L, "@", -1, NULL);
+    instance = *(id *)instancePointer;
+    if (instancePointer) free(instancePointer);
+    return instance;
+}
+
 // You can't tell if there are 0 or 1 arguments based on selector alone, so pass in an SEL[2] for possibleSelectors
 void wax_selectorsForName(const char *methodName, SEL possibleSelectors[2]) {
     int strlength = strlen(methodName) + 2; // Add 2. One for trailing : and one for \0

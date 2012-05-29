@@ -77,6 +77,7 @@ wax_instance_userdata *wax_instance_create(lua_State *L, id instance, BOOL isCla
     
     size_t nbytes = sizeof(wax_instance_userdata);
     wax_instance_userdata *instanceUserdata = (wax_instance_userdata *)lua_newuserdata(L, nbytes);
+    instanceUserdata->info.type = wax_instance_type;
     instanceUserdata->instance = instance;
     instanceUserdata->isClass = isClass;
     instanceUserdata->isSuper = nil;

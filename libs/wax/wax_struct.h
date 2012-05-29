@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "lua.h"
 
+#import "wax_userdata_info.h"
+
 #define WAX_STRUCT_METATABLE_NAME "wax.struct"
 
 typedef struct _wax_struct_userdata {
+    wax_userdata_info info;
     void *data;
     int size;
     char *name;
