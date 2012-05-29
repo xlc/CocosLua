@@ -244,10 +244,8 @@ static LuaExecutor *sharedExecutor;
 }
 
 - (id)pop {
-    id *instancePointer = wax_copyToObjc(L, "@", -1, nil);      // TODO have handle value that is not object
+    id instance = wax_getObject(L, -1);
     lua_pop(L, 1);
-    id instance = *(id *)instancePointer;
-    if (instancePointer) free(instancePointer);
     return instance;
 }
 

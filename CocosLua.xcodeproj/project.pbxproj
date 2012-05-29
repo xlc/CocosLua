@@ -21,6 +21,7 @@
 		0667A03415720167007BF5FF /* filesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0667A03315720167007BF5FF /* filesystem.m */; };
 		0667A04D15739012007BF5FF /* cocos2d in Resources */ = {isa = PBXBuildFile; fileRef = 0667A04B15739012007BF5FF /* cocos2d */; };
 		0667A04E15739012007BF5FF /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 0667A04C15739012007BF5FF /* init.lua */; };
+		0667A0501574A334007BF5FF /* wax_userdata_info.h in Headers */ = {isa = PBXBuildFile; fileRef = 0667A04F1574A334007BF5FF /* wax_userdata_info.h */; };
 		066955CF1566164D00D7B646 /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 066955611566161200D7B646 /* libcocos2d.a */; };
 		066955D015662D3C00D7B646 /* MLogger.c in Sources */ = {isa = PBXBuildFile; fileRef = 06834AE6155FB30B001A1F44 /* MLogger.c */; };
 		066955D3156645D700D7B646 /* LuaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 066955D2156645D700D7B646 /* LuaClient.m */; };
@@ -682,6 +683,7 @@
 		0667A03315720167007BF5FF /* filesystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = filesystem.m; sourceTree = "<group>"; };
 		0667A04B15739012007BF5FF /* cocos2d */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cocos2d; sourceTree = "<group>"; };
 		0667A04C15739012007BF5FF /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.lua; sourceTree = "<group>"; };
+		0667A04F1574A334007BF5FF /* wax_userdata_info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wax_userdata_info.h; sourceTree = "<group>"; };
 		066955D1156645D600D7B646 /* LuaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaClient.h; sourceTree = "<group>"; };
 		066955D2156645D700D7B646 /* LuaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaClient.m; sourceTree = "<group>"; };
 		06834A6D155FAD36001A1F44 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -1066,6 +1068,7 @@
 				06834C031560FBE1001A1F44 /* wax_instance.m */,
 				06834C071560FBE1001A1F44 /* wax_struct.h */,
 				06834C081560FBE1001A1F44 /* wax_struct.m */,
+				0667A04F1574A334007BF5FF /* wax_userdata_info.h */,
 			);
 			name = wax;
 			path = libs/wax;
@@ -1496,6 +1499,7 @@
 				06834C691560FBE1001A1F44 /* wax_helpers.h in Headers */,
 				06834C6B1560FBE1001A1F44 /* wax_instance.h in Headers */,
 				06834C701560FBE1001A1F44 /* wax_struct.h in Headers */,
+				0667A0501574A334007BF5FF /* wax_userdata_info.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
